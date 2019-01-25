@@ -36,5 +36,5 @@ Bonus
 
 Wireframes
 ---
-!(./public/images/IMG_0985.jpg)
+!(~/GA-stuff/projects/orderve/public/images/IMG_0985.jpg)
 
