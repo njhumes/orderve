@@ -11,9 +11,10 @@ MVP
 ---
 1. There Will be Users and Events.
 1. Users can create update and delete events.
-* The "Host" will have to include the date/time, budget, title, and a brief description of the event.
+* The "Host" will have to include the date/time, budget, title, location and a brief description of the event.
 2. Users can bid on "posted" events.
 * The "Host" can then see all the bids.
+3. Hosts can view all available chefs on a chef index page.
 
 
 Bonus
@@ -26,5 +27,14 @@ Bonus
 6. Each event is card, on hover will snapshot some of the events requirements.
 7. Profile page structure improvements
 * contain hidden information at first then show if a bid was selected
+8. Sort the events by date.
+9. Google Map pinned of the location of event in the event show page.
+10. Search bar to search for specific skillset or event type
+11. Chefs near you cards on the main screen.
+12. Chef Show pages.
+13. modal for login and registering instead of a page.
 
+Wireframes
+---
+!(./public/images/IMG_0985.jpg)
 
