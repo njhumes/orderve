@@ -33,6 +33,7 @@ Bonus
 11. Chefs near you cards on the main screen.
 12. Chef Show pages.
 13. modal for login and registering instead of a page.
+14. store images as binary in the db instead of urls.
 
 Wireframes
 ---
