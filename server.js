@@ -2,7 +2,7 @@ require('./db/db');
 const express               = require('express');
 const app                   = express();
 const morgan                = require('morgan');
-const mongoose              = require('mongoose');
+// const mongoose              = require('mongoose'); // Not sure if we need mongoose here
 const bodyParser            = require('body-parser');
 const methodOverride        = require('method-override');
 const session               = require('express-session');
