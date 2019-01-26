@@ -22,12 +22,20 @@ app.use(session({
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('short'));
+app.use(express.static('public'));
+
+
+app.use('/users', usersController);
+app.use('/services', servicesController);
+app.use('/events', eventsController);
 
 // load the first home page at /
 app.get('/', (req,res) => {
+    console.log(`loaded the first page`);
     res.render('index.ejs');
+    
 });
 
-app.removeAllListeners(3000, ()=>{
+app.listen(port, ()=>{
     console.log(`server listening on port: ${port}`);
 })
