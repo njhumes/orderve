@@ -8,7 +8,7 @@ const Services      = require('../models/Service');
 //route to the services index.ejs ** for now just listing all current chefs will eventually be used to list out chefs bids ** or orderves
 router.get('/', async (req,res)=>{
     try{
-        res.render('/services/index.ejs');
+        res.render('services/index.ejs');
         // going to have to find all the services (or chefs) that have "made a bid" on a specific event
         // for each chef or service we need to see if it is in the current users events.
         // if they are then put em into a new array which we will pass to the ejs file
@@ -22,7 +22,7 @@ router.get('/new', (req,res)=>{
     //straight up route to the new.ejs when the user wants to create a new service/chef/orderve
     // I think we should also find the current user and pass that along to the ejs file
     
-    res.render('/services/new.ejs');
+    res.render('services/new.ejs');
 });
 
 // create route
@@ -36,14 +36,14 @@ router.post('/', async (req,res)=>{
 // show route
 router.get('/:id', async (req,res)=>{
     // match the id of the clicked chef/service/orderve to one in the services collection and insert into the show.ejs
-    res.render('/services/show.ejs');
+    res.render('services/show.ejs');
 });
 
 //edit route
 router.get('/:id/edit', async (req, res)=>{
     // find one by id based on clicked service
     // give that info to the edit page
-    res.render('/services/edit.ejs');
+    res.render('services/edit.ejs');
 });
 
 // put route
