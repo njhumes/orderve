@@ -8,6 +8,22 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    
+    <form action='/events' method='POST'>
+        <p>Title:</p>
+        <input type='text' name='title'>
+        <p>Location:</p>
+        <input type='text' name='location'>
+        <p>Date & Time:</p>
+        <input type='datetime-local' name='date'>
+        <p>Description:</p>
+        <input type='text' name='description'>
+        <p>Services Requested:</p>
+        <input type='checkbox' name='services'>Chef<!--Need to figure out how to tie these in with the schema and show page -->
+        <input type='checkbox' name='services'>Bartender
+        <p>Host:</p>
+        <input type='text' name='host'> <!--This could autopopulate with your username based on the current req.session -->
+        <p>Budget:</p>
+        <input type='number' name='budget'><br><br>
+        <button type='submit'>Create New Event</button>
 </body>
 </html>
