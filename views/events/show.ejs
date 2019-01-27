@@ -8,6 +8,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    
+    <h1>Event Show Page</h1>
+    <ul>
+        <li><%=event.title%></li>
+        <li><%=event.location%></li>
+        <li><%=event.date%></li>
+        <li><%=event.description%></li>
+        <li><%=event.host%></li>
+        <li><%=event.budget%></li>
+    </ul>
+    <a href='/events/<%=event._id%>/edit'>Edit</a>
+    <!--Add edit feature based on if the event host is the current user logged in-->
+    <!-- -->
 </body>
 </html>

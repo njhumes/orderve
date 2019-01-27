@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    
+<h1>Events List</h1>
+    <% for(let i = 0; i < events.length; i++){%>
+       <li><a href='/events/<%=events[i]._id%>'><%=events[i].title%></a></li>
+    <%}%>
+    <br>
+    <a href='/events/new'><button>Create a New Event</button></a>
 </body>
 </html>
