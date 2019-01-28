@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/about'>About</a>
+            <a href='/events'>Events</a>
+            <a href='/users'>Orderves</a>
+            <a href='/users'>Profile</a>
+        </nav>
+    </header>
+    <main>
+        
+        <section>
+            <h1>Sign Up</h1>
+            <form action="/register" method="POST">
+                Username: <input type="text" name="username" autocomplete="off"> <br>
+                Password: <input type="text" name="password" autocomplete="off"> <br>
+                Email:    <input type="text" name="email" autocomplete="off"> <br>
+                Services: <br>
+                Chef: <input type="checkbox" name="chef"> <br>
+                Zip Code: <input type="text" name="zipCode" autocomplete="off"> <br>
+                <button type="submit">Sign Up</button>
+            </form>
+        </section>
+
+        <br>
+
+        <section>
+            <p><a href='/events'>Events Near You</a></p>
+            <p><a href='/users'>Orderves Near You</a></p>
+        </section>
+
+    </main>
+
+</body>
+</html>

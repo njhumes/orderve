@@ -11,6 +11,7 @@ const port                  = 3000;
 const servicesController    = require('./controllers/servicesController');
 const usersController       = require('./controllers/usersController');
 const eventsController      = require('./controllers/eventsController');
+const authController        = require('./controllers/authController');
 
 // session
 app.use(session({
@@ -28,12 +29,26 @@ app.use(express.static('public'));
 app.use('/users', usersController);
 app.use('/services', servicesController);
 app.use('/events', eventsController);
+app.use('/auth', authController);
 
-// load the first home page at /
+// load the first home page
 app.get('/', (req,res) => {
     console.log(`loaded the first page`);
-    res.render('index.ejs');
-    
+    res.render('index.ejs', {
+        // use session info to identify current
+        // user to go to their Show Page
+    }
+    );
+});
+
+// load the about page
+app.get('/about', (req,res) => {
+    console.log(`loaded the about page`);
+    res.render('about.ejs', {
+        // use session info to identify current
+        // user to go to their Show Page
+    }
+    );
 });
 
 app.listen(port, ()=>{
