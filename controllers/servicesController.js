@@ -5,19 +5,30 @@ const Events        = require('../models/Event');
 const Services      = require('../models/Service');
 
 // index route
+router.get('/', async (req,res)=>{
+    try{
+        const chefs = await Services.find({});
+        res.render('services/index.ejs',{
+            services: chefs,
+            userId: req.session.userId
+        })
+    }catch(err){
+        res.send(err);
+    }
+})
 //route to the services index.ejs ** for now just listing all current chefs will eventually be used to list out chefs bids ** or orderves
 router.get('/event/:id', async (req,res)=>{
     try{
         const event = await Events.findById(req.params.id);;
         const services = Events.services
-        res.render('events/index.ejs', {
-        event: event,
-        services: services
+        res.render('services/index.ejs', {
+            event: event,
+            services: services
         })
-        res.render('services/index.ejs');
+       
         // going to have to find all the services (or chefs) that have "made a bid" on a specific event
         // for each chef or service we need to see if it is in the current users events.
-        // if they are then put em into a new array which we will pass to the ejs file
+        // if they are then put em into new array which we will pass to the ejs file
     }catch(err){
         res.send(err);
     }
@@ -25,7 +36,9 @@ router.get('/event/:id', async (req,res)=>{
 
 // new route
 router.get('/new', (req,res)=>{
-    res.render('services/new.ejs');
+    res.render('services/new.ejs',{
+        userId: req.session.userId
+    });
 });
 
 // create route
@@ -34,7 +47,7 @@ router.post('/', async (req,res)=>{
     try{
         const user = await Users.findById(req.session.userId); // find user based on id
         const createdService = await Services.create(req.body); // create the service in the collection
-        user.yourServices.push(createdService); // add the service to the user's array of services
+        user.services.push(createdService); // add the service to the user's array of services
         await user.save();
         res.redirect("/users/" + user._id); // redirect to the users show page
     }catch(err){
@@ -64,7 +77,8 @@ router.get('/:id', async (req,res)=>{
         const user = await Users.findOne({'services._id': req.params.id});
         res.render('services/show.ejs',{
             user: user,
-            service: service
+            service: service,
+            userId: req.session.userId
         })
 
     } catch(err){

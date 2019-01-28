@@ -8,6 +8,41 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    <h1>Edit User</h1>
+    
+        <header>
+            <nav>
+                <a href='/'>Home</a>
+                <a href='/about'>About</a>
+                <a href='/events'>Events</a>
+                <a href='/users'>Orderves</a>
+                <a href='/users'>Profile</a>
+            </nav>
+        </header>
+        <main>
+            
+            <section>
+                <h1>Edit User</h1>
+                <form action="/register" method="POST">
+                    First Name: <input type="text" name="firstname" autocomplete="off" value="<%=user.firstname%>"> <br>
+                    Last Name:  <input type="text" name="lastname" autocomplete="off" value="<%=user.lastname%>"> <br>
+                    Username:   <input type="text" name="username" autocomplete="off" value="<%=user.username%>"> <br>
+                    Password:   <input type="text" name="password" autocomplete="off" value="<%=user.password%>"> <br>
+                    Email:      <input type="text" name="email" autocomplete="off" value="<%=user.email%>"> <br>
+                    Services:   <br>
+                    Chef:       <input type="checkbox" name="chef" value=""> <br>
+                    Zip Code:   <input type="text" name="zipCode" autocomplete="off" value="<%=user.zip%>"> <br>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </section>
+    
+            <br>
+    
+            <!-- <section>
+                <p><a href='/events'>Events Near You</a></p>
+                <p><a href='/users'>Orderves Near You</a></p>
+            </section> -->
+    
+        </main>
+
 </body>
 </html>

@@ -8,7 +8,8 @@ const eventSchema = mongoose.Schema({
     date: {type: Date, require: true},
     description: {type: String, require: true},
     services: [Services.schema], // TBD if we need this imported or if this will just be a drop down
-    // host: [Users.schema],
+    // hostId: String,
+   // serviceNeeded: String,
     budget: Number,
 })
 

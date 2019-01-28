@@ -13,15 +13,15 @@
             <a href='/'>Home</a>
             <a href='/about'>About</a>
             <a href='/events'>Events</a>
-            <a href='/users'>Orderves</a>
-            <a href='/users'>Profile</a>
+            <a href='/services'>Orderves</a>
+            <a href='/users/<%=userId%>'>Profile</a>
         </nav>
     </header>
     <main>
         <h1>Orderve</h1>
         <h3>Find The Perfect Service For Your Event</h3>
         <h4>Sign Up and Become a Host or an Orderve</h4>
-        <%= message %>
+        
         <form action="/auth/loginPage" method="GET">
             <button type="submit">Log In</button>
         </form>

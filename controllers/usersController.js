@@ -8,22 +8,26 @@ const Services      = require('../models/Service');
 // index route
 router.get('/', async (req,res)=>{
     try{
-        res.render('users/index.ejs');
-        // Show all users (chefs) to hire
-        // MONGO: .find() and list out
-    }catch(err){
+        // EXCLUDE YOUR ACCOUNT ON INDEX
+        const allUsers = await Users.find({ _id: { $ne: req.session.userId } });
+        
+        res.render('users/index.ejs', {
+            users: allUsers, 
+            userId: req.session.userId
+        }
+        );
+    } catch(err){
         res.send(err);
     }
 });
 
-// new route
+// new route (does registration take care of this?)
 router.get('/new', (req,res)=>{
     // Make your profile
-    
-    res.render('users/new.ejs');
+    // res.render('users/new.ejs');
 });
 
-// create route
+// create route (does registration take care of this?)
 router.post('/', async (req,res)=>{
     // Submit your new profile
     // MONGO: .create(req.body)
@@ -32,21 +36,67 @@ router.post('/', async (req,res)=>{
 
 // show route
 router.get('/:id', async (req,res)=>{
-    // Go to your Show Page (Login/Register if session not logged-in)
-    // MONGO: verify user._id from session info and show that info
-    res.render('users/show.ejs');
+
+    try{
+        console.log(req.session);
+        const clickedUser = await Users.findById({ _id: req.params.id });
+
+        res.render('users/show.ejs', {
+            user: clickedUser
+        });
+    } catch(err){
+        res.send(err);
+    }
+    
 });
 
 //edit route
 router.get('/:id/edit', async (req, res)=>{
-    // 
-    res.render('users/edit.ejs');
+    
+    try{
+        const thisUser = await Users.findById({ _id: req.session.userId });
+
+        res.render('users/edit.ejs', {
+            user: thisUser
+        });
+    } catch(err){
+        res.send(err);
+    }
+    
 });
 
 // put route
 router.put('/:id', async (req, res)=>{
-    // 
-    res.redirect('/users/' + req.params.id);
+
+    try{
+        // req.body *may* need to be restructured if errors
+        const updatedUser = await Users.findByIdAndUpdate(req.params.id , req.body);
+
+        res.redirect('/users/' + req.params.id);
+    } catch(err){
+        res.send(err);
+    }
+    
+});
+
+// delete route
+router.delete('/:id', async (req,res) => {
+    
+    try{
+        const deletedUser = await Users.findByIdAndRemove(req.params.id);
+        let eventIds = [];
+
+        for (let i = 0; i < deletedUser.events.length; i++) {
+           eventIds.push(deletedUser.events[i]._id);
+        }
+
+        await Events.deleteMany({ _id: { $in: eventIds } });
+
+        res.redirect('/');
+    } catch(err){
+        res.send(err);
+    }
+
 });
 
 

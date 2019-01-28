@@ -11,7 +11,7 @@
 <h1> Edit Event Page</h1>
 <form action='/events/<%=event._id%>?_method=PUT' method='POST'>
         <input type='text' name='title' value='<%=event.title%>'>
-        <input type='text' name='host' value='<%=user.firstname%>' readonly>
+        <input type='text' name='host' value='<%=user.username%>' readonly>
         <input type='text' name='location' value='<%=event.location%>'>
         <input type='datetime-local' name='date' value='<%=event.date%>'>
         <input type='text' name='description' value='<%=event.description%>'>

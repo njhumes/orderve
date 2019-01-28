@@ -5,7 +5,7 @@ const bcrypt  = require('bcryptjs');
 
 // Create Route
 router.post('/register', async (req, res) => {
-
+  console.log('got to the auth/register');
   const password = req.body.password;
   const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   const userDbEntry = {};
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
     req.session.username = createdUser.username;
     req.session.logged = true;
     req.session.userId = createdUser._id;
-
+    console.log(req.session);
     res.redirect('/users/' + userID);
 
   } catch (err){
@@ -32,20 +32,23 @@ router.post('/register', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
-
+console.log(req.session);
   try {
 
-    const foundUser = await User.findOne({username: req.body.username});
-
+    const foundUser = await User.findOne({'username': req.body.username});
+    console.log(foundUser);
+    console.log(req.body);
+    
     if (foundUser){
-      if (bcrypt.comepareSync(req.body.password, foundUser.password)) {
-
+      if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+        console.log('passwor orrect');
         req.session.message = '';
         req.session.username = foundUser.username;
         req.session.logged = true;
-        req.session.userId = createdUser._id;
+        req.session.userId = foundUser._id;
+        console.log(req.session);
 
-        res.redirect('/authors');
+        res.redirect('/users/' + req.session.userId);
 
       } else {
         req.session.message = 'Username or password is incorrect';
