@@ -15,7 +15,7 @@
             <a href='/about'>About</a>
             <a href='/events'>Events</a>
             <a href='/users'>Orderves</a>
-            <a href='/users'>Profile</a>
+            <a href='/users/<%=userId%>'>Profile</a>
         </nav>
     </header>
 
@@ -25,7 +25,7 @@
         <ul>
         <% for(let i=0; i < users.length; i++ ){ %>
             <li>
-                <a href="/users/<%=users[i]._id%>"> <%= users[i].firstname users[i].lastname %> </a>
+                <a href="/users/<%=users[i]._id%>"> <%= users[i].username%> </a>
             </li>
         <% } %>
         </ul>

@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     lastname: String,
     email: String,
     events: [Events.schema],
-    yourServices: [Services.schema],
+    services: [Services.schema],
     location: String,
     image: String
 });

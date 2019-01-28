@@ -28,10 +28,17 @@
                     Username:   <%=user.username%> <br>
                     Password:   <%=user.password%> <br>
                     Email:      <%=user.email%> <br>
-                    Services:   <br>
+                    Services:   
+                    <% for (let i=0; i< user.services.length; i++){ %>
+                        <a href="../services/<%=user.services[i]._id%>">
+                        <%=user.services[i].title%>
+                        </a>
+                    <%}%>
+                    
                     Chef:       <br>
                     Zip Code:   <%=user.zip%> <br>
             </section>
+            <a href="/services/new"><button type="submit">Create new Service</button></a>
     
             <br>
     

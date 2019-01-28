@@ -6,7 +6,18 @@ const morgan                = require('morgan');
 const bodyParser            = require('body-parser');
 const methodOverride        = require('method-override');
 const session               = require('express-session');
+var MongoDBStore            = require('connect-mongodb-session')(session);
 const port                  = 3000;
+
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+    collection: 'mySessions'
+});
+
+  // Catch errors
+store.on('error', function(error) {
+    console.log(error);
+});
 
 const servicesController    = require('./controllers/servicesController');
 const usersController       = require('./controllers/usersController');
@@ -16,8 +27,12 @@ const authController        = require('./controllers/authController');
 // session
 app.use(session({
     secret: "THIS IS A RANDOM STRING SECRET",
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
+    store: store,
 }));
 // other middleware
 app.use(methodOverride('_method'));
@@ -35,6 +50,7 @@ app.use('/auth', authController);
 app.get('/', (req,res) => {
     console.log(`loaded the first page`);
     res.render('index.ejs', {
+        userId: req.session.userId
         // use session info to identify current
         // user to go to their Show Page
     }

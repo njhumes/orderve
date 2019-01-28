@@ -27,7 +27,8 @@ router.get('/', async (req, res) => {
 // New Route
 router.get('/new', async (req, res) => {
     try {
-        const user = await Users.findOne(req.session.username);
+        console.log(req.session);
+        const user = await Users.findById(req.session.userId);
         const servicesNeeded = await Services.find({})
         res.render('events/new.ejs', {
             user: user,
@@ -44,11 +45,16 @@ router.get('/:id', async (req, res) => {
     try {
         const shownEvent = await Events.findById(req.params.id);
         const theHost = await Users.findOne({'events._id': req.params.id})
-        const servicesNeeded = await Services.findOne({'events._id': req.params.id})
+        //const servicesNeeded = shownEvent.servicesNeeded;
+        console.log(theHost);
+        console.log('=======');
+        console.log(shownEvent);
+        
+       
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
-            services: servicesNeeded
+            //services: servicesNeeded
         })
     } catch(err) {
         res.send(err)
@@ -78,7 +84,7 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const updateEvent = await Events.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        const theHost = await Users.findOne({'events._id': req.body.id})
+        const theHost = await Users.findOne({'events._id': req.params.id})
         theHost.events.id(req.params.id).remove();
         theHost.events.push(updateEvent);
         theHost.save();
@@ -91,10 +97,11 @@ router.put('/:id', async (req, res) => {
 
 // Create
 router.post('/', async (req, res) => {
+    console.log(req.session);
     if(req.session.logged == true) {
         try {
             const newEvent = await Events.create(req.body);
-            const host = await Users.findById(req.body.userId)
+            const host = await Users.findById(req.session.userId)
             host.events.push(newEvent);
             host.save()
             res.redirect('/events');
@@ -112,11 +119,11 @@ router.post('/', async (req, res) => {
 // Delete
 router.delete('/:id', async (req, res) => {
     try {
-        const deleted = await Events.findByIdAndRemove(req.params.id);
+        const deleted = await Events.findByIdAndDelete(req.params.id);
         const foundHost = await Users.findOne({'events._id': req.params.id});
         foundHost.events.id(req.params.id).remove();
         foundHost.save();
-        res.redirect('/events')
+        res.redirect('/events');
     } catch(err) {
         res.send(err)
         console.log(err)

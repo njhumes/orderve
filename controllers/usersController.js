@@ -10,9 +10,10 @@ router.get('/', async (req,res)=>{
     try{
         // EXCLUDE YOUR ACCOUNT ON INDEX
         const allUsers = await Users.find({ _id: { $ne: req.session.userId } });
-
+        
         res.render('users/index.ejs', {
-            users: allUsers 
+            users: allUsers, 
+            userId: req.session.userId
         }
         );
     } catch(err){
@@ -37,6 +38,7 @@ router.post('/', async (req,res)=>{
 router.get('/:id', async (req,res)=>{
 
     try{
+        console.log(req.session);
         const clickedUser = await Users.findById({ _id: req.params.id });
 
         res.render('users/show.ejs', {
