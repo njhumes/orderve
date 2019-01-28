@@ -17,11 +17,16 @@
         <input type='datetime-local' name='date'>
         <p>Description:</p>
         <input type='text' name='description'>
+        
+        <!-- Test These two below -->
         <p>Services Requested:</p>
-        <input type='checkbox' name='services'>Chef<!--Need to figure out how to tie these in with the schema and show page -->
-        <input type='checkbox' name='services'>Bartender
+        <input type='checkbox' name='<%=services.title%>'>Chef<!--Need to figure out how to tie these in with the schema and show page -->
+
         <p>Host:</p>
-        <input type='text' name='host'> <!--This could autopopulate with your username based on the current req.session -->
+         <input type='text' name='userId' value='<%=user.firstname%>' readonly>
+
+
+
         <p>Budget:</p>
         <input type='number' name='budget'><br><br>
         <button type='submit'>Create New Event</button>

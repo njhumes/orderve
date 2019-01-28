@@ -11,6 +11,7 @@
 <h1>Events List</h1>
     <% for(let i = 0; i < events.length; i++){%>
        <li><a href='/events/<%=events[i]._id%>'><%=events[i].title%></a></li>
+        <!-- add the host and the services requested here -->
     <%}%>
     <br>
     <a href='/events/new'><button>Create a New Event</button></a>
