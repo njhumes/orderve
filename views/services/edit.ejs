@@ -8,12 +8,12 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="/services/" method="POST">
         Here will be a dropdown showing each type of skill they can choose
-        Job Title: <input type="text" name="title" value="service.title">
-        Description: <input type="text" name="info" value="service.info">
+        Job Title: <input type="text" name="title" value="<%=service.title%>">
+        Description: <input type="text" name="info" value="<%=service.info%>">
         Maybe loop through all the images to edit serparatly? so they can delete images from here
-        Images (URL): <input type="text" name="url" value="service.url">
+        Images (URL): <input type="text" name="url" value="<%=service.url%>">
         <button type="submit">Edit skillset/chef/orderve</button>
 </body>
 </html>
