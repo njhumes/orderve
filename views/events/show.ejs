@@ -14,8 +14,11 @@
         <li><%=event.location%></li>
         <li><%=event.date%></li>
         <li><%=event.description%></li>
-        <li><%=event.host%></li>
+        <li><%=user.firstname%></li>
         <li><%=event.budget%></li>
+        <li><%=services.title%></li>
+     
+        
     </ul>
     <a href='/events/<%=event._id%>/edit'>Edit</a>
     <!--Add edit feature based on if the event host is the current user logged in-->
