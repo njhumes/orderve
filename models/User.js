@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
     password: {type: String, required: true} ,
     email: String,
     events: [Events.schema],
-    yourServices: [Services.schema],
+    services: [Services.schema],
     location: String,
     image: String
 });

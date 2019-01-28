@@ -7,14 +7,9 @@ const mongoose = require('mongoose')
 
 
 // Index Route
-router.get('/', async (req, res) => {
+router.get('/, async (req, res) => {
     try {
-        const allEvents = await Events.find({});
-        // May need info from Users/Services schema if we want to display that information on the index
-        // Or we don't need to necessarily and just display the basic event info on the index page
-        res.render('events/index.ejs', {
-        events: allEvents
-        })
+        
     } catch(err){
         res.send(err)
         console.log(err)
