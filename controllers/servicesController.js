@@ -95,7 +95,8 @@ router.get('/:id/edit', async (req, res)=>{
         const user = await Users.findOne({'services._id': req.params.id});
         res.render('services/edit.ejs',{
             user: user,
-            service: service
+            service: service,
+            userId: req.session.userId
         });
     }catch(err){
         res.send(err);
@@ -105,30 +106,48 @@ router.get('/:id/edit', async (req, res)=>{
 // put route
 router.put('/:id', async (req, res)=>{
     // find one service by id and update
+    
     try{
+        console.log('about to update..' + JSON.stringify(req.body));
         const service = await Services.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        console.log('after ' + service);
         const user = await Users.findOne({'services._id': req.params.id});
         const event = await Events.findOne({'services._id': req.params.id});
-        user.services.id(req.params.id).set(service);  // I really think these are going to bug
-        event.services.id(req.params.id).set(service); // Did this instead of .remove and .push so if we need to can change this easily
+        await user.services.id(req.params.id).remove();  
+        await user.services.push(service);
         await user.save();
-        await event.save();
+        if(event){
+            console.log('updating in the event: ' + event + 'the service: ' + service);
+            event.services.id(req.params.id).remove();
+            event.services.push(service);
+            await event.save();
+            res.redirect('/services/' + req.params.id);
+        }
         res.redirect('/services/' + req.params.id);
     }catch(err){
         res.send(err);
+        console.log(err);
     }
 });
 
 router.delete('/:id', async (req, res)=>{
     try{
         const deletedService = await Services.findByIdAndDelete(req.params.id);
+        console.log(`First Deleted service console.log` + deletedService);
         const foundUser = await Users.findOne({'services._id': req.params.id});
         const foundEvent = await Events.findOne({'services._id': req.params.id});
         foundUser.services.id(req.params.id).remove();
         await foundUser.save();
-        foundEvent.services.id(req.params.id).remove();
-        console.log(`deleted ${deletedService}`);
-        res.redirect('/users/' + user._id); // redirects to the current users show page
+        if(foundEvent){
+            console.log('deleted from the event' + deletedService);
+            foundEvent.services.id(req.params.id).remove();
+            await foundEvent.save();
+            res.redirect('/users/' + req.session.userId); 
+        }
+        console.log('deleted' + deletedService);
+        res.redirect('/users/' + req.session.userId); 
+        
+        // redirects to the current users show page
     }catch(err){
         res.send(err);
     }
