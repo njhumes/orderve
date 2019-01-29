@@ -32,7 +32,7 @@
                 <%}%>
                 
             </div>
-            <% if (currentUserId === true && (serviceUser._id.toString() === currentUserId.toString())){%>
+            <% if (currentSession.logged === true && (serviceUser._id.toString() === currentUserId.toString())){%>
                 <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
                 <a href="/services/<%=service._id%>/edit"><button type="submit">Edit</button></a>
                 <form action="/services/<%=service._id%>?_method=DELETE" method="POST">

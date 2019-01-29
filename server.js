@@ -62,6 +62,7 @@ app.get('/', (req,res) => {
 app.get('/about', (req,res) => {
     console.log(`loaded the about page`);
     res.render('about.ejs', {
+        currentUserId: req.session.userId,
         currentSession: req.session
         // use session info to identify current
         // user to go to their Show Page

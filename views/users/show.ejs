@@ -43,7 +43,7 @@
                     Chef:       <br>
                     Zip Code:   <%=user.zip%> <br>
             </section>
-            <% if (currentUserId === true && user._id.toString() === currentUserId.toString()){%>
+            <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
                 <a href="/services/new"><button type="submit">Create new Service</button></a>
                 <a href="/users/<%=currentUserId%>/edit"><button type="submit">Edit Your Profile</button></a>
                 <a href='/events/new'><button>Create a New Event</button></a>
