@@ -14,8 +14,8 @@
                 <a href='/about'>About</a>
                 <a href='/events'>Events</a>
                 <a href='/services'>Orderves</a>
-                <a href='/users/<%=userId%>'>Profile</a>
                 <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
                     <a href='/auth/logout'>Logout</a>
                 <%} else {%>
                     <a href='/auth/loginPage'>Login</a>
@@ -31,7 +31,7 @@
             Images (URL): <input type="text" name="images"><br/>
             <button type="submit">Create new skillset/chef/orderve</button><br/>
         </form> 
-        <a href="/users/<%=userId%>"><button type="submit">Go back to profile</button></a>
+        <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
        
     </main>
 

@@ -15,8 +15,8 @@
                     <a href='/about'>About</a>
                     <a href='/events'>Events</a>
                     <a href='/services'>Orderves</a>
-                    <a href='/users/<%=currentUserId%>'>Profile</a>
                     <% if (currentSession.logged){%>
+                        <a href='/users/<%=currentUserId%>'>Profile</a>
                         <a href='/auth/logout'>Logout</a>
                     <%} else {%>
                         <a href='/auth/loginPage'>Login</a>
@@ -43,7 +43,7 @@
                     Chef:       <br>
                     Zip Code:   <%=user.zip%> <br>
             </section>
-            <% if (user._id.toString() === currentUserId.toString()){%>
+            <% if (currentUserId === true && user._id.toString() === currentUserId.toString()){%>
                 <a href="/services/new"><button type="submit">Create new Service</button></a>
                 <a href="/users/<%=currentUserId%>/edit"><button type="submit">Edit Your Profile</button></a>
                 <a href='/events/new'><button>Create a New Event</button></a>
@@ -53,10 +53,7 @@
             <%}%>
             <br>
     
-            <!-- <section>
-                <p><a href='/events'>Events Near You</a></p>
-                <p><a href='/users'>Orderves Near You</a></p>
-            </section> -->
+            
     
         </main>
 
