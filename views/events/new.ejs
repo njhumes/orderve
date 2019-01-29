@@ -34,7 +34,7 @@
         
         <!-- Test These two below -->
         <p>Services Requested:</p>
-        <select multiple name="servicesNeeded">
+        <select name="servicesNeeded">
             <option value=''>None</option>
             <option value="Chef">Chef</option>
             <option value="Bartender">Bartender</option>
@@ -42,8 +42,6 @@
 
         <p>Host:</p>
          <input type='text' name='username' value='<%=user.username%>' readonly>
-
-
 
         <p>Budget:</p>
         <input type='number' name='budget'><br><br>
