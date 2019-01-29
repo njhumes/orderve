@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+ 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
@@ -8,32 +12,95 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"> 
+                    <a class="nav-link" href='/'>Home</a> 
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" href='/about'>About</a> 
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" href='/events'>Events</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" href='/services'>Orderves</a> 
+                </li>
+
+                <% if (currentSession.logged){%>
+
+                    <li class="nav-item"> 
+                        <a class="nav-link" href='/users/<%=currentUserId%>'>Profile</a> 
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" href='/auth/logout'>Logout</a> 
+                    </li>
+
+                <%} else {%>
+
+                    <li class="nav-item"> 
+                        <a class="nav-link" href='/auth/loginPage'>Login</a>
+                    </li>
+
+                <%}%>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- BANNER -->
     <header>
-        <nav>
-            <a href='/'>Home</a>
-            <a href='/about'>About</a>
-            <a href='/events'>Events</a>
-            <a href='/services'>Orderves</a>
-            <% if (currentSession.logged){%>
-                <a href='/users/<%=currentUserId%>'>Profile</a>
-                <a href='/auth/logout'>Logout</a>
-            <%} else {%>
-                <a href='/auth/loginPage'>Login</a>
-            <%}%>
-        </nav>
-    </header>
-    <main>
-        <h1>Orderve</h1>
-        <h3>Find The Perfect Service For Your Event</h3>
-        <h4>Sign Up and Become a Host or an Orderve</h4>
+        <div class="container">
+            <div class="row justify-content-md-center" id="home-banner">
+                <div class="col-12-md-auto" id="home-banner-content">
+                        <h1>Orderve</h1>
+                        <h3>Find The Perfect Service For Your Event</h3>
+                        <h4>Sign Up and Become a Host or an Orderve</h4>
+                
+                    <div id="home-login-buttons">
+                        <form action="/auth/loginPage" method="GET">
+                            <button type="submit">Log In</button>
+                        </form>
+                        <form action="/auth/registerPage" method="GET">
+                            <button type="submit">Sign Up</button>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>  
+    <br>
+
+    <!-- EVENTS AND CHEFS NEARBY -->
+    <section>
+        <div class="container">
+            <div class="row justify-content-md-center text-center">
+                <div class="col-6">
+                    <h2>Events Near You</h2>
+                    <% for (let i=0; i<events.length; i++) { %>
+                        <a href="/events/<%=events[i]._id%>"> <%= events[i].title %> </a>
+                    <% } %>
+                    <form action="/events" method="GET">
+                        <button type="submit">All Events</button>
+                    </form>
+                </div>
+
+                <div class="col-6">
+                    <h2>Orderves Near You</h2>
+                    <% for (let i=0; i<users.length; i++) { %>
+                        <a href="/users/<%=users[i]._id%>"> <%= users[i].username %> </a>
+                    <% } %>
+                    <form action="/users" method="GET">
+                        <button type="submit">All Orderves</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
         
-        <form action="/auth/loginPage" method="GET">
-            <button type="submit">Log In</button>
-        </form>
-        <form action="/auth/registerPage" method="GET">
-            <button type="submit">Sign Up</button>
-        </form>
-       
-    </main>
+        
 </body>
 </html>

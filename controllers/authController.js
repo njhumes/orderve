@@ -41,22 +41,26 @@ console.log(req.session);
     
     if (foundUser){
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        console.log('passwor orrect');
+        console.log('password correct');
         req.session.message = '';
         req.session.username = foundUser.username;
         req.session.logged = true;
         req.session.userId = foundUser._id;
         console.log(req.session);
-
+        
         res.redirect('/users/' + req.session.userId);
 
       } else {
         req.session.message = 'Username or password is incorrect';
-        res.redirect('/loginPage');
+        res.render('auth/login.ejs', {
+          message: req.session.message
+        });
       }
     } else {
       req.session.message = 'Username or password is incorrect';
-      res.redirect('/loginPage');
+      res.render('auth/login.ejs', {
+        message: req.session.message
+      });
     }
 
   } catch(err){
@@ -78,7 +82,9 @@ router.get('/logout', (req, res) => {
 
 // New Login Page
 router.get('/loginPage', (req, res) => {
-    res.render('auth/login.ejs');
+    res.render('auth/login.ejs', {
+      message: req.session.message
+    });
 });
 
 // New Registration Page

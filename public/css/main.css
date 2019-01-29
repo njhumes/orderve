@@ -2,3 +2,24 @@ img {
     width: 100px;
     height: 100px;
 }
+
+/* ul {
+    list-style-type: none;
+} */
+
+/* .nav-item {
+    padding:10px;
+    font-size: 25px;
+} */
+
+/* .navbar-nav {
+    float:right;
+} */
+
+#home-login-buttons {
+    display: inline-block;
+}
+
+#home-login-buttons form {
+    display: inline-block;
+}
