@@ -15,8 +15,8 @@
                     <a href='/about'>About</a>
                     <a href='/events'>Events</a>
                     <a href='/services'>Orderves</a>
-                    <a href='/users/<%=userId%>'>Profile</a>
                     <% if (currentSession.logged){%>
+                        <a href='/users/<%=currentUserId%>'>Profile</a>
                         <a href='/auth/logout'>Logout</a>
                     <%} else {%>
                         <a href='/auth/loginPage'>Login</a>
@@ -42,10 +42,7 @@
     
             <br>
     
-            <!-- <section>
-                <p><a href='/events'>Events Near You</a></p>
-                <p><a href='/users'>Orderves Near You</a></p>
-            </section> -->
+           
     
         </main>
 
