@@ -8,6 +8,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/about'>About</a>
+            <a href='/events'>Events</a>
+            <a href='/users'>Orderves</a>
+            <a href='/users/<%=userId%>'>Profile</a>
+        </nav>
+    </header>
+
 <h1>Events List</h1>
     <% for(let i = 0; i < events.length; i++){%>
        <li><a href='/events/<%=events[i]._id%>'><%=events[i].title%></a></li>

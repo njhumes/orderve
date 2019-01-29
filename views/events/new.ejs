@@ -8,6 +8,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/about'>About</a>
+            <a href='/events'>Events</a>
+            <a href='/users'>Orderves</a>
+            <a href='/users/<%=userId%>'>Profile</a>
+        </nav>
+    </header>
     <form action='/events' method='POST'>
         <p>Title:</p>
         <input type='text' name='title'>
@@ -20,7 +29,13 @@
         
         <!-- Test These two below -->
         <p>Services Requested:</p>
-        <input type='checkbox' name='<%=services.title%>'>Chef<!--Need to figure out how to tie these in with the schema and show page -->
+        <select name="servicesId">
+        <%for (let i = 0; i < services.length; i++) { %>
+
+           <option value="<%=services[i]._id%>"><%=services[i].title%></option>
+
+        <% } %>
+      </select><br/>
 
         <p>Host:</p>
          <input type='text' name='username' value='<%=user.username%>' readonly>
