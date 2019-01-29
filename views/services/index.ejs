@@ -8,14 +8,28 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    <h1>EVENT TITLE - chef bids</h1>
-    <ul>
-        <% for (let i = 0; i < services.length; i++) { %>
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/about'>About</a>
+            <a href='/events'>Events</a>
+            <a href='/services'>Orderves</a>
+            <a href='/users/<%=userId%>'>Profile</a>
+        </nav>
+    </header>
+    <main>
+        <h1>EVENT TITLE - chef bids</h1>
+        <ul>
+            <% for (let i = 0; i < services.length; i++) { %>
 
             <a href="/services/<%=services[i]._id%>"><li><%=services[i].title%>
             
             </li></a>
-        <%}%>
-    </ul>
+            <%}%>
+        </ul>  
+        <a href="/users/<%=userId%>"><button type="submit">Go back to profile</button></a>
+        
+    </main>
+    
 </body>
 </html>
