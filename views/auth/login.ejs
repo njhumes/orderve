@@ -21,8 +21,9 @@
     <main>
         <h1>Login</h1>
         <form action="/auth/login" method="POST">
-            Username: <input type="text" name="username" autocomplete="off">
-            Password: <input type="text" name="password" autocomplete="off">
+            <%= message %> <br>
+            Username: <input type="text" name="username" autocomplete="off"> <br>
+            Password: <input type="text" name="password" autocomplete="off"> <br>
             <button type="submit">Log In</button>
         </form>
         <br>

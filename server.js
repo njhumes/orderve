@@ -8,6 +8,9 @@ const methodOverride        = require('method-override');
 const session               = require('express-session');
 var MongoDBStore            = require('connect-mongodb-session')(session);
 const port                  = 3000;
+const Users                 = require('./models/User');
+const Events                = require('./models/Event');
+const Services              = require('./models/Service');
 
 const store = new MongoDBStore({
     uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
@@ -47,22 +50,28 @@ app.use('/events', eventsController);
 app.use('/auth', authController);
 
 // load the first home page
-app.get('/', (req,res) => {
+app.get('/', async (req,res) => {
     console.log(`loaded the first page`);
+
+    try {
+    
+    const events = await Events.find({});
+    const users = await Users.find({});
+
     res.render('index.ejs', {
-        userId: req.session.userId
-        // use session info to identify current
-        // user to go to their Show Page
+        userId: req.session.userId,
+        events: events,
+        users: users
+    });
+    } catch (err) {
+        res.send(err);
     }
-    );
 });
 
 // load the about page
 app.get('/about', (req,res) => {
     console.log(`loaded the about page`);
     res.render('about.ejs', {
-        // use session info to identify current
-        // user to go to their Show Page
     }
     );
 });
