@@ -39,7 +39,9 @@
     <%if(currentSession.logged === true && currentUserId.toString() === user._id.toString()){%>
     <a href='/events/<%=event._id%>/edit'>Edit</a>
     <a href='/services/event/<%=event._id%>'>Show Bids</a>
-   <% }%>
+   <% } else {%>
+    <a href='/services/event/new/<%=event._id%>'>Make Bid</a>
+   <%}%>
     <!--Add edit feature based on if the event host is the current user logged in-->
     <!-- -->
 </body>

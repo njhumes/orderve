@@ -23,11 +23,11 @@
             </nav>
     </header>
     <main>
-        <h1>EVENT TITLE - chef bids</h1>
+        <h1><%=event.title%> - chef bids</h1>
         <ul>
-            <% for (let i = 0; i < services.length; i++) { %>
+            <% for (let i = 0; i < event.services.length; i++) { %>
 
-            <a href="/services/<%=services[i]._id%>"><li><%=services[i].title%>
+            <a href="/services/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
             
             </li></a>
             <%}%>
