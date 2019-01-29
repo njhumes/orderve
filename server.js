@@ -50,7 +50,8 @@ app.use('/auth', authController);
 app.get('/', (req,res) => {
     console.log(`loaded the first page`);
     res.render('index.ejs', {
-        userId: req.session.userId
+        userId: req.session.userId,
+        currentSession: req.session
         // use session info to identify current
         // user to go to their Show Page
     }

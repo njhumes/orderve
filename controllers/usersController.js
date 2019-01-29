@@ -13,7 +13,8 @@ router.get('/', async (req,res)=>{
         
         res.render('users/index.ejs', {
             users: allUsers, 
-            userId: req.session.userId
+            userId: req.session.userId,
+            currentSession: req.session
         }
         );
     } catch(err){
@@ -42,7 +43,9 @@ router.get('/:id', async (req,res)=>{
         const clickedUser = await Users.findById({ _id: req.params.id });
 
         res.render('users/show.ejs', {
-            user: clickedUser
+            user: clickedUser,
+            currentUserId: req.session.userId,
+            currentSession: req.session
         });
     } catch(err){
         res.send(err);
@@ -57,7 +60,8 @@ router.get('/:id/edit', async (req, res)=>{
         const thisUser = await Users.findById({ _id: req.session.userId });
 
         res.render('users/edit.ejs', {
-            user: thisUser
+            user: thisUser,
+            currentSession: req.session
         });
     } catch(err){
         res.send(err);

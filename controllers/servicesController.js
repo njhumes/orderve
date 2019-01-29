@@ -10,7 +10,8 @@ router.get('/', async (req,res)=>{
         const chefs = await Services.find({});
         res.render('services/index.ejs',{
             services: chefs,
-            userId: req.session.userId
+            userId: req.session.userId,
+            currentSession: req.session
         })
     }catch(err){
         res.send(err);
@@ -20,17 +21,16 @@ router.get('/', async (req,res)=>{
 router.get('/event/:id', async (req,res)=>{
     try{
         const event = await Events.findById(req.params.id);;
-        const services = Events.services
+        const services = Events.services;
         res.render('services/index.ejs', {
             event: event,
             services: services,
-            userId: req.session.userId
-        })
-       
-        // going to have to find all the services (or chefs) that have "made a bid" on a specific event
+            userId: req.session.userId,
+            currentSession: req.session
         // for each chef or service we need to see if it is in the current users events.
         // if they are then put em into new array which we will pass to the ejs file
-    }catch(err){
+        });
+    } catch(err){
         res.send(err);
     }
 });
@@ -38,7 +38,8 @@ router.get('/event/:id', async (req,res)=>{
 // new route
 router.get('/new', (req,res)=>{
     res.render('services/new.ejs',{
-        userId: req.session.userId
+        userId: req.session.userId,
+        currentSession: req.session
     });
 });
 
@@ -56,7 +57,7 @@ router.post('/', async (req,res)=>{
     }
 });
 
-// This route will handle when a chef makes a bid it will add the service to the event service array
+// This route will handle when a chef makes a bid it will add the service to the event service array --- This needs work
 router.post('/:id', async (req, res)=>{
     try{
         const event = await Events.findById(req.body.id);
@@ -67,7 +68,7 @@ router.post('/:id', async (req, res)=>{
         console.log(thisService);
         event.services.push(thisService);
     }catch(err){
-
+        res.send(err);
     }
 })
 
@@ -76,10 +77,13 @@ router.get('/:id', async (req,res)=>{
     try {   
         const service = await Services.findById(req.params.id);
         const user = await Users.findOne({'services._id': req.params.id});
+        console.log('user id: ' + user._id);
+        console.log('current User Id ' + req.session.userId);
         res.render('services/show.ejs',{
-            user: user,
+            serviceUser: user,
             service: service,
-            userId: req.session.userId
+            currentUserId: req.session.userId,
+            currentSession: req.session
         })
 
     } catch(err){
@@ -97,7 +101,8 @@ router.get('/:id/edit', async (req, res)=>{
         res.render('services/edit.ejs',{
             user: user,
             service: service,
-            userId: req.session.userId
+            userId: req.session.userId,
+            currentSession: req.session
         });
     }catch(err){
         res.send(err);
