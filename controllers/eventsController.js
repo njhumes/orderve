@@ -10,12 +10,12 @@ const mongoose = require('mongoose')
 router.get('/', async (req, res) => {
     try {
         const allEvents = await Events.find({});
-        const host = await Users.findById(req.body.hostId);
+        const host = await Users.findOne({'events._id': req.session.userId});
         const servicesNeeded = await Services.find(req.body.serviceId)
         // Or we don't need to necessarily and just display the basic event info on the index page
         res.render('events/index.ejs', {
         events: allEvents,
-        users: host,
+        user: host,
         services: servicesNeeded,
         userId: req.session.userId,
         currentSession: req.session

@@ -25,13 +25,12 @@ router.get('/event/:id', async (req,res)=>{
         res.render('services/index.ejs', {
             event: event,
             services: services,
+            userId: req.session.userId,
             currentSession: req.session
-        })
-       
-        // going to have to find all the services (or chefs) that have "made a bid" on a specific event
         // for each chef or service we need to see if it is in the current users events.
         // if they are then put em into new array which we will pass to the ejs file
-    }catch(err){
+        });
+    } catch(err){
         res.send(err);
     }
 });

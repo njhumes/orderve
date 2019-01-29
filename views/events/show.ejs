@@ -31,10 +31,15 @@
         <p>Services Needed: <%=user.services.title%></p>
         <p>Budget: <%=event.budget%><p>
         
-     
-        
+        <% console.log('~~~~~~')%>
+        <% console.log(userId)%>
+        <% console.log(user._id)%>
+        <% console.log('~~~~~~')%>
     </ul>
+    <%if(userId.toString() === user._id.toString()){%>
     <a href='/events/<%=event._id%>/edit'>Edit</a>
+    <a href='/services/event/<%=event._id%>'>Show Bids</a>
+   <% }%>
     <!--Add edit feature based on if the event host is the current user logged in-->
     <!-- -->
 </body>
