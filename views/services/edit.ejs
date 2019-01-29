@@ -8,12 +8,34 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
 </head>
 <body>
-    <form action="/services/" method="POST">
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/about'>About</a>
+            <a href='/events'>Events</a>
+            <a href='/services'>Orderves</a>
+            <a href='/users/<%=userId%>'>Profile</a>
+        </nav>
+    </header>
+    <main>
+    <form action="/services/<%=service._id%>?_method=PUT" method="POST">
         Here will be a dropdown showing each type of skill they can choose
-        Job Title: <input type="text" name="title" value="<%=service.title%>">
-        Description: <input type="text" name="info" value="<%=service.info%>">
-        Maybe loop through all the images to edit serparatly? so they can delete images from here
-        Images (URL): <input type="text" name="url" value="<%=service.url%>">
+        Job Title: <input type="text" name="title" value="<%=service.title%>"><br/>
+        Description: <input type="text" name="about" value="<%=service.about%>"><br/>
+        Maybe loop through all the images to edit serparatly? so they can delete images from here<br/>
+        Add Images (URL): <input type="text" name="images" value="">
+        <% for (let i = 0; i < service.images.length; i++) {%>
+            <img src="<%=service.images[i]%>"><br/>
+        <%}%>
+        
+        
+        
         <button type="submit">Edit skillset/chef/orderve</button>
+    </form>
+    <form action="/services/<%=service._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+    </main>
+    
 </body>
 </html>
