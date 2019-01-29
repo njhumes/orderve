@@ -9,7 +9,7 @@ const eventSchema = mongoose.Schema({
     description: {type: String, require: true},
     services: [Services.schema], // TBD if we need this imported or if this will just be a drop down
     // hostId: String,
-    serviceNeeded: String,
+    servicesNeeded: String,
     budget: Number,
 })
 
