@@ -17,7 +17,9 @@ router.get('/', async (req, res) => {
         events: allEvents,
         users: host,
         services: servicesNeeded,
-        userId: req.session.userId
+        userId: req.session.userId,
+        currentSession: req.session
+
 
         })
     } catch(err){
@@ -36,6 +38,7 @@ router.get('/new', async (req, res) => {
             user: user,
             services: servicesNeeded,
             userId: req.session.userId,
+            currentSession: req.session
 
         })
     } catch(err) { 
@@ -59,6 +62,7 @@ router.get('/:id', async (req, res) => {
             event: shownEvent,
             user: theHost,
             userId: req.session.userId,
+            currentSession: req.session
             //services: servicesNeeded
         })
     } catch(err) {
@@ -78,7 +82,8 @@ router.get('/:id/edit', async (req, res) => {
             event: editEvent,
             user: theHost,
             services: editServices,
-            userId: req.session.userId
+            userId: req.session.userId,
+            currentSession: req.session
 
         })
     } catch(err) {
