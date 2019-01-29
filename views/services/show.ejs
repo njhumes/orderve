@@ -14,8 +14,9 @@
                 <a href='/about'>About</a>
                 <a href='/events'>Events</a>
                 <a href='/services'>Orderves</a>
-                <a href='/users/<%=userId%>'>Profile</a>
+                
                 <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
                     <a href='/auth/logout'>Logout</a>
                 <%} else {%>
                     <a href='/auth/loginPage'>Login</a>
@@ -31,14 +32,14 @@
                 <%}%>
                 
             </div>
-            <% if (serviceUser._id.toString() === currentUserId.toString()){%>
+            <% if (currentUserId === true && (serviceUser._id.toString() === currentUserId.toString())){%>
                 <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
                 <a href="/services/<%=service._id%>/edit"><button type="submit">Edit</button></a>
                 <form action="/services/<%=service._id%>?_method=DELETE" method="POST">
                     <button type="submit">Delete</button>
                 </form>
             <%} else{%>
-                <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
+                <a href="/"><button type="submit">Go Home</button></a>
                 
             <%}%>
 

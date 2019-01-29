@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         events: allEvents,
         user: host,
         services: servicesNeeded,
-        userId: req.session.userId,
+        currentUserId: req.session.userId,
         currentSession: req.session
 
 
@@ -37,7 +37,7 @@ router.get('/new', async (req, res) => {
         res.render('events/new.ejs', {
             user: user,
             services: servicesNeeded,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
             currentSession: req.session
 
         })
@@ -61,7 +61,7 @@ router.get('/:id', async (req, res) => {
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
             currentSession: req.session
             //services: servicesNeeded
         })

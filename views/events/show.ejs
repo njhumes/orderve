@@ -14,8 +14,8 @@
                 <a href='/about'>About</a>
                 <a href='/events'>Events</a>
                 <a href='/services'>Orderves</a>
-                <a href='/users/<%=userId%>'>Profile</a>
                 <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
                     <a href='/auth/logout'>Logout</a>
                 <%} else {%>
                     <a href='/auth/loginPage'>Login</a>
@@ -32,11 +32,11 @@
         <p>Budget: <%=event.budget%><p>
         
         <% console.log('~~~~~~')%>
-        <% console.log(userId)%>
+        <% console.log(currentUserId)%>
         <% console.log(user._id)%>
         <% console.log('~~~~~~')%>
     </ul>
-    <%if(userId.toString() === user._id.toString()){%>
+    <%if(currentUserId === true && currentUserId.toString() === user._id.toString()){%>
     <a href='/events/<%=event._id%>/edit'>Edit</a>
     <a href='/services/event/<%=event._id%>'>Show Bids</a>
    <% }%>

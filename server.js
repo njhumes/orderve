@@ -50,7 +50,7 @@ app.use('/auth', authController);
 app.get('/', (req,res) => {
     console.log(`loaded the first page`);
     res.render('index.ejs', {
-        userId: req.session.userId,
+        currentUserId: req.session.userId,
         currentSession: req.session
         // use session info to identify current
         // user to go to their Show Page
@@ -62,6 +62,7 @@ app.get('/', (req,res) => {
 app.get('/about', (req,res) => {
     console.log(`loaded the about page`);
     res.render('about.ejs', {
+        currentSession: req.session
         // use session info to identify current
         // user to go to their Show Page
     }

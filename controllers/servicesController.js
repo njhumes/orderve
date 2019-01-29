@@ -10,7 +10,7 @@ router.get('/', async (req,res)=>{
         const chefs = await Services.find({});
         res.render('services/index.ejs',{
             services: chefs,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
             currentSession: req.session
         })
     }catch(err){
@@ -25,7 +25,7 @@ router.get('/event/:id', async (req,res)=>{
         res.render('services/index.ejs', {
             event: event,
             services: services,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
             currentSession: req.session
         // for each chef or service we need to see if it is in the current users events.
         // if they are then put em into new array which we will pass to the ejs file
@@ -38,7 +38,7 @@ router.get('/event/:id', async (req,res)=>{
 // new route
 router.get('/new', (req,res)=>{
     res.render('services/new.ejs',{
-        userId: req.session.userId,
+        currentUserId: req.session.userId,
         currentSession: req.session
     });
 });
@@ -101,7 +101,7 @@ router.get('/:id/edit', async (req, res)=>{
         res.render('services/edit.ejs',{
             user: user,
             service: service,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
             currentSession: req.session
         });
     }catch(err){
