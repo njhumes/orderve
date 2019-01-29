@@ -13,7 +13,8 @@ router.get('/', async (req,res)=>{
         
         res.render('users/index.ejs', {
             users: allUsers, 
-            userId: req.session.userId
+            currentUserId: req.session.userId,
+            currentSession: req.session
         }
         );
     } catch(err){
@@ -36,18 +37,22 @@ router.post('/', async (req,res)=>{
 
 // show route
 router.get('/:id', async (req,res)=>{
+    if(req.session.logged){
+        try{
+            console.log(req.session);
+            const clickedUser = await Users.findById({ _id: req.params.id });
 
-    try{
-        console.log(req.session);
-        const clickedUser = await Users.findById({ _id: req.params.id });
-
-        res.render('users/show.ejs', {
-            user: clickedUser
-        });
-    } catch(err){
-        res.send(err);
+            res.render('users/show.ejs', {
+                user: clickedUser,
+                currentUserId: req.session.userId,
+                currentSession: req.session
+            });
+        } catch(err){
+            res.send(err);
+        }
+    } else{
+        res.redirect('auth/loginPage');
     }
-    
 });
 
 //edit route
@@ -57,7 +62,9 @@ router.get('/:id/edit', async (req, res)=>{
         const thisUser = await Users.findById({ _id: req.session.userId });
 
         res.render('users/edit.ejs', {
-            user: thisUser
+            user: thisUser,
+            currentSession: req.session,
+            currentUserId: req.session.userId
         });
     } catch(err){
         res.send(err);

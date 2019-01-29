@@ -9,13 +9,18 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href='/'>Home</a>
-            <a href='/about'>About</a>
-            <a href='/events'>Events</a>
-            <a href='/users'>Orderves</a>
-            <a href='/users/<%=userId%>'>Profile</a>
-        </nav>
+            <nav>
+                <a href='/'>Home</a>
+                <a href='/about'>About</a>
+                <a href='/events'>Events</a>
+                <a href='/services'>Orderves</a>
+                <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
+                    <a href='/auth/logout'>Logout</a>
+                <%} else {%>
+                    <a href='/auth/loginPage'>Login</a>
+                <%}%>
+            </nav>
     </header>
     <h1><%=event.title%></h1>
     
@@ -26,10 +31,15 @@
         <p>Services Needed: <%=user.services.title%></p>
         <p>Budget: <%=event.budget%><p>
         
-     
-        
+        <% console.log('~~~~~~')%>
+        <% console.log(currentUserId)%>
+        <% console.log(user._id)%>
+        <% console.log('~~~~~~')%>
     </ul>
+    <%if(currentSession.logged === true && currentUserId.toString() === user._id.toString()){%>
     <a href='/events/<%=event._id%>/edit'>Edit</a>
+    <a href='/services/event/<%=event._id%>'>Show Bids</a>
+   <% }%>
     <!--Add edit feature based on if the event host is the current user logged in-->
     <!-- -->
 </body>

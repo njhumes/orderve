@@ -10,7 +10,7 @@ var MongoDBStore            = require('connect-mongodb-session')(session);
 const port                  = 3000;
 const Users                 = require('./models/User');
 const Events                = require('./models/Event');
-const Services              = require('./models/Service');
+// const Services              = require('./models/Service');
 
 const store = new MongoDBStore({
     uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
@@ -37,12 +37,12 @@ app.use(session({
     },
     store: store,
 }));
+
 // other middleware
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('short'));
 app.use(express.static('public'));
-
 
 app.use('/users', usersController);
 app.use('/services', servicesController);
@@ -52,17 +52,16 @@ app.use('/auth', authController);
 // load the first home page
 app.get('/', async (req,res) => {
     console.log(`loaded the first page`);
-
     try {
-    
-    const events = await Events.find({});
-    const users = await Users.find({});
+        const events = await Events.find({});
+        const users = await Users.find({});
 
-    res.render('index.ejs', {
-        userId: req.session.userId,
-        events: events,
-        users: users
-    });
+        res.render('index.ejs', {
+            currentUserId: req.session.userId,
+            currentSession: req.session,
+            events: events,
+            users: users
+        });
     } catch (err) {
         res.send(err);
     }
@@ -70,10 +69,17 @@ app.get('/', async (req,res) => {
 
 // load the about page
 app.get('/about', (req,res) => {
-    console.log(`loaded the about page`);
-    res.render('about.ejs', {
+    if (err) {
+        res.send(err);
+    } else {
+        console.log(`loaded the about page`);
+        res.render('about.ejs', {
+            currentUserId: req.session.userId,
+            currentSession: req.session
+            // use session info to identify current
+            // user to go to their Show Page
+        });
     }
-    );
 });
 
 app.listen(port, ()=>{

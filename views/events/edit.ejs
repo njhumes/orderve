@@ -9,13 +9,18 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href='/'>Home</a>
-            <a href='/about'>About</a>
-            <a href='/events'>Events</a>
-            <a href='/users'>Orderves</a>
-            <a href='/users/<%=userId%>'>Profile</a>
-        </nav>
+            <nav>
+                <a href='/'>Home</a>
+                <a href='/about'>About</a>
+                <a href='/events'>Events</a>
+                <a href='/services'>Orderves</a>
+                <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
+                    <a href='/auth/logout'>Logout</a>
+                <%} else {%>
+                    <a href='/auth/loginPage'>Login</a>
+                <%}%>
+            </nav>
     </header>
 <h1> Edit <%=event.title%></h1>
 <form action='/events/<%=event._id%>?_method=PUT' method='POST'>

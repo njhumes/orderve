@@ -10,14 +10,16 @@ const mongoose = require('mongoose')
 router.get('/', async (req, res) => {
     try {
         const allEvents = await Events.find({});
-        const host = await Users.findById(req.body.hostId);
+        const host = await Users.findOne({'events._id': req.session.userId});
         const servicesNeeded = await Services.find(req.body.serviceId)
         // Or we don't need to necessarily and just display the basic event info on the index page
         res.render('events/index.ejs', {
         events: allEvents,
-        users: host,
+        user: host,
         services: servicesNeeded,
-        userId: req.session.userId
+        currentUserId: req.session.userId,
+        currentSession: req.session
+
 
         })
     } catch(err){
@@ -35,7 +37,8 @@ router.get('/new', async (req, res) => {
         res.render('events/new.ejs', {
             user: user,
             services: servicesNeeded,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
+            currentSession: req.session
 
         })
     } catch(err) { 
@@ -58,7 +61,8 @@ router.get('/:id', async (req, res) => {
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
-            userId: req.session.userId,
+            currentUserId: req.session.userId,
+            currentSession: req.session
             //services: servicesNeeded
         })
     } catch(err) {
@@ -78,7 +82,8 @@ router.get('/:id/edit', async (req, res) => {
             event: editEvent,
             user: theHost,
             services: editServices,
-            userId: req.session.userId
+            userId: req.session.userId,
+            currentSession: req.session
 
         })
     } catch(err) {
