@@ -34,9 +34,10 @@
         
         <!-- Test These two below -->
         <p>Services Requested:</p>
-        <select name="servicesNeeded">
-           <option value="chef"><%=Chef%></option>
-           <option value="bartender"><%=Bartender%></option>
+        <select multiple name="servicesNeeded">
+            <option value=''>None</option>
+            <option value="Chef">Chef</option>
+            <option value="Bartender">Bartender</option>
         </select><br/>
 
         <p>Host:</p>
