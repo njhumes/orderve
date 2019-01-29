@@ -34,18 +34,14 @@
         
         <!-- Test These two below -->
         <p>Services Requested:</p>
-        <select name="servicesId">
-        <%for (let i = 0; i < services.length; i++) { %>
-
-           <option value="<%=services[i]._id%>"><%=services[i].title%></option>
-
-        <% } %>
-      </select><br/>
+        <select name="servicesNeeded">
+            <option value=''>None</option>
+            <option value="Chef">Chef</option>
+            <option value="Bartender">Bartender</option>
+        </select><br/>
 
         <p>Host:</p>
          <input type='text' name='username' value='<%=user.username%>' readonly>
-
-
 
         <p>Budget:</p>
         <input type='number' name='budget'><br><br>

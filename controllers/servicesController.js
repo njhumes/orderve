@@ -8,6 +8,8 @@ const Services      = require('../models/Service');
 router.get('/', async (req,res)=>{
     try{
         const chefs = await Services.find({});
+        console.log('all the services: ' + chefs);
+        console.log('==============');
         res.render('services/index.ejs',{
             services: chefs,
             currentUserId: req.session.userId,
@@ -19,12 +21,12 @@ router.get('/', async (req,res)=>{
 })
 //route to the services index.ejs ** for now just listing all current chefs will eventually be used to list out chefs bids ** or orderves
 router.get('/event/:id', async (req,res)=>{
+    console.log('in the eents');
     try{
         const event = await Events.findById(req.params.id);;
-        const services = Events.services;
+        console.log('event: ' + event);
         res.render('services/index.ejs', {
             event: event,
-            services: services,
             currentUserId: req.session.userId,
             currentSession: req.session
         // for each chef or service we need to see if it is in the current users events.
@@ -58,15 +60,21 @@ router.post('/', async (req,res)=>{
 });
 
 // This route will handle when a chef makes a bid it will add the service to the event service array --- This needs work
-router.post('/:id', async (req, res)=>{
+router.get('/event/new/:id', async (req, res)=>{
     try{
-        const event = await Events.findById(req.body.id);
+        const event = await Events.findById(req.params.id);
         const user = await Users.findById(req.session.userId);
-        const thisService = await user.services.find((service)=>{
-            return service.title === "Chef";
-        });
+        console.log('===========');
+        console.log('user: ' + user);
+        console.log('==========');
+        console.log(user.services[0]);
+        const thisService = user.services[0];
+        console.log('===========');
         console.log(thisService);
+        console.log('===============');
         event.services.push(thisService);
+        await event.save();
+        res.redirect('/events/' + req.params.id);
     }catch(err){
         res.send(err);
     }
