@@ -23,7 +23,8 @@ router.get('/event/:id', async (req,res)=>{
         const services = Events.services
         res.render('services/index.ejs', {
             event: event,
-            services: services
+            services: services,
+            userId: req.session.userId
         })
        
         // going to have to find all the services (or chefs) that have "made a bid" on a specific event
