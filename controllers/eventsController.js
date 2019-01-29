@@ -16,7 +16,9 @@ router.get('/', async (req, res) => {
         res.render('events/index.ejs', {
         events: allEvents,
         users: host,
-        services: servicesNeeded
+        services: servicesNeeded,
+        userId: req.session.userId
+
         })
     } catch(err){
         res.send(err)
@@ -32,7 +34,9 @@ router.get('/new', async (req, res) => {
         const servicesNeeded = await Services.find({})
         res.render('events/new.ejs', {
             user: user,
-            services: servicesNeeded 
+            services: servicesNeeded,
+            userId: req.session.userId,
+
         })
     } catch(err) { 
         res.send(err);
@@ -54,6 +58,7 @@ router.get('/:id', async (req, res) => {
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
+            userId: req.session.userId,
             //services: servicesNeeded
         })
     } catch(err) {
@@ -72,7 +77,9 @@ router.get('/:id/edit', async (req, res) => {
         res.render('events/edit.ejs', {
             event: editEvent,
             user: theHost,
-            services: editServices
+            services: editServices,
+            userId: req.session.userId
+
         })
     } catch(err) {
         res.send(err);
