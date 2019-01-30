@@ -33,10 +33,15 @@
                     Username:   <input type="text" name="username" autocomplete="off" value="<%=user.username%>"> <br>
                     Password:   <input type="text" name="password" autocomplete="off" value="<%=user.password%>"> <br>
                     Email:      <input type="text" name="email" autocomplete="off" value="<%=user.email%>"> <br>
-                    Services:   <br>
-                    Chef:       <input type="checkbox" name="chef" value=""> <br>
+                    <!-- Services:   <br>
+                    Chef:       <input type="checkbox" name="chef" value=""> <br> -->
                     Zip Code:   <input type="text" name="zipCode" autocomplete="off" value="<%=user.zipCode%>"> <br>
-                    <button type="submit">Update Profile</button>
+                    Image:      <input type="text" name="image" autocomplete="off" value=""> <br>
+                    <br> <button type="submit">Update Profile</button>
+                </form>
+
+                <form action="/users/<%=currentUserId%>?_method=DELETE" method="POST">
+                    <br> <button type="submit">Delete Profile</button>
                 </form>
             </section>
     
