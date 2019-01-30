@@ -69,17 +69,11 @@ app.get('/', async (req,res) => {
 
 // load the about page
 app.get('/about', (req,res) => {
-    if (err) {
-        res.send(err);
-    } else {
-        console.log(`loaded the about page`);
-        res.render('about.ejs', {
-            currentUserId: req.session.userId,
-            currentSession: req.session
-            // use session info to identify current
-            // user to go to their Show Page
-        });
-    }
+    console.log(`loaded the about page`);
+    res.render('about.ejs', {
+        currentUserId: req.session.userId,
+        currentSession: req.session
+    });
 });
 
 app.listen(port, ()=>{

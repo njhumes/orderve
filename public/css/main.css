@@ -1,11 +1,17 @@
+#heading-text {
+    /* ADD A GOOGLE FONT */
+    font-size: 70px;
+}
+
 img {
     width: 100px;
     height: 100px;
 }
 
-/* ul {
+ul {
     list-style-type: none;
-} */
+    padding: 0;
+}
 
 /* .nav-item {
     padding:10px;
@@ -22,4 +28,12 @@ img {
 
 #home-login-buttons form {
     display: inline-block;
+}
+
+#orderve-list {
+    background-color: gray;
+}
+
+#event-list {
+    background-color: gray;
 }
