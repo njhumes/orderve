@@ -14,34 +14,34 @@
 <body>
 
     <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand">
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"> 
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active px-2"> 
                     <a class="nav-link" href='/'>Home</a> 
                 </li>
-                <li class="nav-item"> 
+                <li class="nav-item px-2"> 
                     <a class="nav-link" href='/about'>About</a> 
                 </li>
-                <li class="nav-item"> 
+                <li class="nav-item px-2"> 
                     <a class="nav-link" href='/events'>Events</a>
                 </li>
-                <li class="nav-item"> 
+                <li class="nav-item px-2"> 
                     <a class="nav-link" href='/services'>Orderves</a> 
                 </li>
 
                 <% if (currentSession.logged){%>
 
-                    <li class="nav-item"> 
+                    <li class="nav-item px-2"> 
                         <a class="nav-link" href='/users/<%=currentUserId%>'>Profile</a> 
                     </li>
-                    <li class="nav-item"> 
+                    <li class="nav-item px-2"> 
                         <a class="nav-link" href='/auth/logout'>Logout</a> 
                     </li>
 
                 <%} else {%>
 
-                    <li class="nav-item"> 
+                    <li class="nav-item px-2"> 
                         <a class="nav-link" href='/auth/loginPage'>Login</a>
                     </li>
 
@@ -78,11 +78,11 @@
     <section>
         <div class="container">
             <div class="row text-center">
-                <div class="col-5" id="event-list">
+                <div class="col-md-5" id="event-list">
                     <h2>Events Near You</h2>
                     <% for (let i=0; i<events.length; i++) { %>
                         <li class="list-group-item text-left">
-                            <img src="<%=events[i].image%>">
+                            <img class="img-resize" src="<%=events[i].image%>">
                             <a href="/events/<%=events[i]._id%>"> <%= events[i].title %> </a>
                         </li>
                     <% } %>
@@ -91,12 +91,12 @@
                     </form>
                 </div>
 
-                <div class="col-5 offset-sm-2" id="orderve-list">
+                <div class="col-md-5 offset-md-2 my-4 my-md-0" id="orderve-list">
                     <h2>Orderves Near You</h2>
                     <ul>
                     <% for (let i=0; i<users.length; i++) { %>
                         <li class="list-group-item text-left">
-                            <img src="<%=users[i].image%>">
+                            <img class="img-resize" src="<%=users[i].image%>">
                             <a href="/users/<%=users[i]._id%>"> <%= users[i].username %> </a>
                         </li>
                     <% } %>
@@ -104,7 +104,7 @@
                     <form action="/users" method="GET">
                         <button type="submit">All Orderves</button>
                     </form>
-                    <br>
+                    
                 </div>
             </div>
         </div>

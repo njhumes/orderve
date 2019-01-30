@@ -30,10 +30,23 @@ ul {
     display: inline-block;
 }
 
-#orderve-list {
-    background-color: gray;
+#orderve-list, #event-list {
+    padding: 15px;
+    background-color: rgb(243, 243, 243);
 }
 
-#event-list {
-    background-color: gray;
+h2 {
+    color:#FF3008;
+}
+
+@media only screen and (max-width: 991px) {
+    .img-resize {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.nav-link {
+    color:#FF3008;
+    font-size: 20px;
 }
