@@ -31,19 +31,21 @@
         <p>Services Needed: <%=event.servicesNeeded%></p>
         <p>Budget: <%=event.budget%><p>
         
-        <% console.log('~~~~~~')%>
-        <% console.log(currentUserId)%>
-        <% console.log(user._id)%>
-        <% console.log('~~~~~~')%>
     </ul>
-    <%if(currentSession.logged === true && currentUserId.toString() === user._id.toString()){%>
-    <a href='/events/<%=event._id%>/edit'>Edit</a>
-        <%if(event.services.length > 0){%>
-    <a href='/services/event/<%=event._id%>'>Show Bids</a>
-        <%}%>   
-   <% } else {%>
-    <a href='/services/event/new/<%=event._id%>'>Make Bid</a>
-   <%}%>
+
+    <% if(currentSession.logged === true){%>
+        <%if(currentUserId.toString() === user._id.toString()){%>
+            <a href='/events/<%=event._id%>/edit'>Edit</a>
+                <%if(event.services.length > 0){%>
+            <a href='/services/event/<%=event._id%>'>Show Bids</a>
+                <%}%>   
+        <% }else if(currentUser.services.length > 0 && currentUser.services[0].title === event.servicesNeeded) {%>
+            <a href='/services/event/new/<%=event._id%>'><button id='bid-button'>Make Bid</button></a>
+        <% } %>
+   <% }%>
+
+   
+
     <!--Add edit feature based on if the event host is the current user logged in-->
     <!-- -->
 </body>

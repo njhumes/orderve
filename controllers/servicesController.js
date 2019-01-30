@@ -25,7 +25,7 @@ router.get('/event/:id', async (req,res)=>{
     console.log('in the eents');
     try{
         const event = await Events.findById(req.params.id);;
-        console.log('event: ' + event);
+        console.log('~~~~~~~~~~ event: ' + event);
         res.render('services/index.ejs', {
             event: event,
             isEvent: true,
@@ -66,17 +66,10 @@ router.get('/event/new/:id', async (req, res)=>{
     try{
         const event = await Events.findById(req.params.id);
         const user = await Users.findById(req.session.userId);
-        console.log('===========');
-        console.log('user: ' + user);
-        console.log('==========');
-        console.log(user.services[0]);
         const thisService = user.services[0];
-        console.log('===========');
-        console.log(thisService);
-        console.log('===============');
         event.services.push(thisService);
         await event.save();
-        res.redirect('/events/' + req.params.id);
+        res.redirect('/events');
     }catch(err){
         res.send(err);
     }

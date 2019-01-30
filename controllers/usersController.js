@@ -51,7 +51,8 @@ router.get('/:id', async (req,res)=>{
             res.send(err);
         }
     } else{
-        res.redirect('auth/loginPage');
+        req.session.message = 'You need to log in or register to view the Orderves!';
+        res.redirect('/auth/loginPage');
     }
 });
 
