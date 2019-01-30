@@ -28,10 +28,8 @@
             <h1><%=event.title%> - chef bids</h1>
             <ul>
                 <% for (let i = 0; i < event.services.length; i++) { %>
-    
-                <a href="/services/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
-                
-                </li></a>
+                    <a href="/services/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
+                    </li></a>
                 <%}%>
             </ul>  
             <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>

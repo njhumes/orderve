@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     email: String,
     events: [Events.schema],
     services: [Services.schema],
-    location: String,
+    zipCode: String,
     image: String
 });
 

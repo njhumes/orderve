@@ -31,7 +31,7 @@
                     First Name: <%=user.firstname%> <br>
                     Last Name:  <%=user.lastname%> <br>
                     Username:   <%=user.username%> <br>
-                    Password:   <%=user.password%> <br>
+
                     Email:      <%=user.email%> <br>
                     Events:     
                         <%for(let i = 0; i < user.events.length; i++){%>
@@ -45,7 +45,7 @@
                         <%=user.services[i].title%>
                         </a>
                     <%}%><br>
-                    Zip Code:   <%=user.zip%> <br>
+                    Zip Code:   <%=user.zipCode%> <br>
             </section>
             <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
                 <a href="/services/new"><button type="submit">Create new Service</button></a>

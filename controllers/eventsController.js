@@ -51,19 +51,14 @@ router.get('/new', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const shownEvent = await Events.findById(req.params.id);
-        const theHost = await Users.findOne({'events._id': req.params.id})
-        //const servicesNeeded = shownEvent.servicesNeeded;
-        console.log(theHost);
-        console.log('=======');
-        console.log(shownEvent);
-        
-       
+        const theHost = await Users.findOne({'events._id': req.params.id});
+        const currentUser = await Users.findById(req.session.userId);       
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
             currentUserId: req.session.userId,
-            currentSession: req.session
-            //services: servicesNeeded
+            currentSession: req.session,
+            currentUser: currentUser
         })
     } catch(err) {
         res.send(err)
@@ -73,17 +68,22 @@ router.get('/:id', async (req, res) => {
 
 // Edit Route
 router.get('/:id/edit', async (req, res) => {
+    console.log(`are we getting here`);
+    console.log(req.session);
     try {
         const editEvent = await Events.findById(req.params.id);
         const theHost = await Users.findOne({'events._id': req.params.id});
-        const editServices = await Users.find({})
+        const currentUser = await Users.findById(req.session.userId);
+        const editServices = await Users.find({});
+        console.log(currentUser);
         // if we want to edit any info taken from the Services or User Schemas
         res.render('events/edit.ejs', {
             event: editEvent,
             user: theHost,
             services: editServices,
-            userId: req.session.userId,
-            currentSession: req.session
+            currentUserId: req.session.userId,
+            currentSession: req.session,
+            currentUser: currentUser
 
         })
     } catch(err) {

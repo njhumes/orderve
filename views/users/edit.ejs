@@ -27,7 +27,7 @@
             
             <section>
                 <h1>Edit User</h1>
-                <form action="/register" method="POST">
+                <form action="/users/<%=currentUserId%>?_method=PUT" method="POST">
                     First Name: <input type="text" name="firstname" autocomplete="off" value="<%=user.firstname%>"> <br>
                     Last Name:  <input type="text" name="lastname" autocomplete="off" value="<%=user.lastname%>"> <br>
                     Username:   <input type="text" name="username" autocomplete="off" value="<%=user.username%>"> <br>
@@ -35,8 +35,8 @@
                     Email:      <input type="text" name="email" autocomplete="off" value="<%=user.email%>"> <br>
                     Services:   <br>
                     Chef:       <input type="checkbox" name="chef" value=""> <br>
-                    Zip Code:   <input type="text" name="zipCode" autocomplete="off" value="<%=user.zip%>"> <br>
-                    <button type="submit">Sign Up</button>
+                    Zip Code:   <input type="text" name="zipCode" autocomplete="off" value="<%=user.zipCode%>"> <br>
+                    <button type="submit">Update Profile</button>
                 </form>
             </section>
     
