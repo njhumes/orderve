@@ -12,7 +12,9 @@ router.post('/register', async (req, res) => {
   userDbEntry.username = req.body.username;
   userDbEntry.email = req.body.email;
   userDbEntry.password = hashedPassword;
-
+  userDbEntry.firstname = req.body.firstname;
+  userDbEntry.lastname = req.body.lastname;
+  userDbEntry.zipCode = req.body.zipCode;
   try {
     const createdUser = await User.create(userDbEntry);
     const thisUser = await User.findOne({username: createdUser.username});
