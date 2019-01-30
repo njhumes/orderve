@@ -11,6 +11,7 @@ const eventSchema = mongoose.Schema({
     // hostId: String,
     servicesNeeded: String,
     budget: Number,
+    // image: String
 })
 
 const Event = mongoose.model('Event', eventSchema)
