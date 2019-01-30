@@ -24,16 +24,31 @@
             </nav>
     </header>
     <main>
-        <h1><%=event.title%> - chef bids</h1>
-        <ul>
-            <% for (let i = 0; i < event.services.length; i++) { %>
+        <% if (isEvent){%>
+            <h1><%=event.title%> - chef bids</h1>
+            <ul>
+                <% for (let i = 0; i < event.services.length; i++) { %>
+    
+                <a href="/services/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
+                
+                </li></a>
+                <%}%>
+            </ul>  
+            <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
+        <%} else {%>
+            <h1>Current Chefs Looking for Events</h1>
+            <ul>
+                <% for (let i = 0; i < services.length; i++) { %>
+    
+                <a href="/services/<%=services[i]._id%>"><li><%=services[i].title%>
+                
+                </li></a>
+                <%}%>
+            </ul>  
+            <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
+        
+        <%}%>
 
-            <a href="/services/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
-            
-            </li></a>
-            <%}%>
-        </ul>  
-        <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
         
     </main>
     
