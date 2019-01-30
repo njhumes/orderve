@@ -33,14 +33,18 @@
                     Username:   <%=user.username%> <br>
                     Password:   <%=user.password%> <br>
                     Email:      <%=user.email%> <br>
+                    Events:     
+                        <%for(let i = 0; i < user.events.length; i++){%>
+                            <a href='../events/<%=user.events[i]._id%>'><%=user.events[i].title%></a>
+                            <br>
+
+                        <%}%>
                     Services:   
                     <% for (let i=0; i< user.services.length; i++){ %>
                         <a href="../services/<%=user.services[i]._id%>">
                         <%=user.services[i].title%>
                         </a>
-                    <%}%>
-                    
-                    Chef:       <br>
+                    <%}%><br>
                     Zip Code:   <%=user.zip%> <br>
             </section>
             <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
