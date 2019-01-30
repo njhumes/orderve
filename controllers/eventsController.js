@@ -52,7 +52,10 @@ router.get('/:id', async (req, res) => {
     try {
         const shownEvent = await Events.findById(req.params.id);
         const theHost = await Users.findOne({'events._id': req.params.id});
-        const currentUser = await Users.findById(req.session.userId);       
+        const currentUser = await Users.findById(req.session.userId);
+        console.log('---------------');
+        console.log(shownEvent);
+        console.log('-----------------');
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
