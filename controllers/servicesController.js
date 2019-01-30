@@ -11,6 +11,7 @@ router.get('/', async (req,res)=>{
         console.log('all the services: ' + chefs);
         console.log('==============');
         res.render('services/index.ejs',{
+            isEvent: false,
             services: chefs,
             currentUserId: req.session.userId,
             currentSession: req.session
@@ -27,6 +28,7 @@ router.get('/event/:id', async (req,res)=>{
         console.log('event: ' + event);
         res.render('services/index.ejs', {
             event: event,
+            isEvent: true,
             currentUserId: req.session.userId,
             currentSession: req.session
         // for each chef or service we need to see if it is in the current users events.
