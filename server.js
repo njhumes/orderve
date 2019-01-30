@@ -68,14 +68,6 @@ app.get('/', async (req,res) => {
 });
 
 // load the about page
-<<<<<<< HEAD
-app.get('/about', (req,res) => {
-    console.log(`loaded the about page`);
-    res.render('about.ejs', {
-        currentUserId: req.session.userId,
-        currentSession: req.session
-    });
-=======
 app.get('/about', async (req, res) => {
     try {
         res.render('about.ejs', {
@@ -86,7 +78,6 @@ app.get('/about', async (req, res) => {
         res.send(err);
         console.log(err);
     }
->>>>>>> master
 });
 
 
