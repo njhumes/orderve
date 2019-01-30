@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 
 // Index Route
 router.get('/', async (req, res) => {
+    console.log(req.session);
     try {
         const allEvents = await Events.find({});
         const host = await Users.findOne({'events._id': req.session.userId});
@@ -19,8 +20,6 @@ router.get('/', async (req, res) => {
         services: servicesNeeded,
         currentUserId: req.session.userId,
         currentSession: req.session
-
-
         })
     } catch(err){
         res.send(err)
@@ -30,20 +29,25 @@ router.get('/', async (req, res) => {
 
 // New Route
 router.get('/new', async (req, res) => {
-    try {
-        console.log(req.session);
-        const user = await Users.findById(req.session.userId);
-        const servicesNeeded = await Services.find({})
-        res.render('events/new.ejs', {
-            user: user,
-            services: servicesNeeded,
-            currentUserId: req.session.userId,
-            currentSession: req.session
+    if(req.session.logged){
+        try {
+            console.log(req.session);
+            const user = await Users.findById(req.session.userId);
+            const servicesNeeded = await Services.find({})
+            res.render('events/new.ejs', {
+                user: user,
+                services: servicesNeeded,
+                currentUserId: req.session.userId,
+                currentSession: req.session
 
-        })
-    } catch(err) { 
-        res.send(err);
-        console.log(err);
+            })
+        } catch (err) {
+            res.send(err);
+            console.log(err);
+        }
+    }else{
+        req.session.message = 'You need to log in or register to create a new event!';
+        res.redirect('/auth/loginPage')
     }
 })
 
