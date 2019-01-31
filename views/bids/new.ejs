@@ -26,12 +26,12 @@
         <h1>Make bid for: <%=event.title%></h1>
         <form action="/bids/events/<%=event._id%>" method="POST">
         Service Type:   <select name="title">
-                            <option value=''>None</option>
-                            <option value="Chef">Chef</option>
-                            <option value="Bartender">Bartender</option>
+                        <% event.servicesNeeded.forEach((service)=>{ %>
+                            <option value="<%=service%>"><%=service%></option>
+                        <% }) %>
                         </select><br/>
-        Bid Amount: <input type="number" name="bidAmount">
-        Message: <input type="text" name="note">
+        Bid Amount: <input type="number" name="bidAmount"> <br>
+        Message: <input type="text" name="note"> <br>
         <button type="submit">Submit Bid</button>
         </form>
     </main>
