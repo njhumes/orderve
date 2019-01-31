@@ -56,13 +56,15 @@ console.log(req.session);
       } else {
         req.session.message = 'Username or password is incorrect';
         res.render('auth/login.ejs', {
-          message: req.session.message
+          message: req.session.message,
+          currentSession: req.session
         });
       }
     } else {
       req.session.message = 'Username or password is incorrect';
       res.render('auth/login.ejs', {
-        message: req.session.message
+        message: req.session.message,
+        currentSession: req.session
       });
     }
 
@@ -93,7 +95,9 @@ router.get('/loginPage', (req, res) => {
 
 // New Registration Page
 router.get('/registerPage', (req, res) => {
-    res.render('auth/register.ejs');
+    res.render('auth/register.ejs', {
+      currentSession: req.session
+    });
 });
 
 module.exports = router;
