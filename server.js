@@ -26,6 +26,7 @@ const servicesController    = require('./controllers/servicesController');
 const usersController       = require('./controllers/usersController');
 const eventsController      = require('./controllers/eventsController');
 const authController        = require('./controllers/authController');
+const bidController         = require('./controllers/bidController');
 
 // session
 app.use(session({
@@ -48,6 +49,7 @@ app.use('/users', usersController);
 app.use('/services', servicesController);
 app.use('/events', eventsController);
 app.use('/auth', authController);
+app.use('/bids', bidController);
 
 // load the first home page
 app.get('/', async (req,res) => {

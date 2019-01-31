@@ -27,6 +27,24 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Index of Bids
+router.get('/:id/bids', async (req,res)=>{
+    try{
+        const foundEvent = await Events.findById(req.params.id);
+        if(foundEvent.services.length > 0) {
+            res.render('bids/index.ejs', {
+                isEvent: true,
+                event: foundEvent,
+                currentSession: req.session,
+                currentUserId: req.session.userId
+            })
+        }
+    }catch(err){
+        console.log(err);
+        res.send(err);
+    }
+})
+
 // New Route
 router.get('/new', async (req, res) => {
     if(req.session.logged){
@@ -55,7 +73,10 @@ router.get('/:id', async (req, res) => {
     try {
         const shownEvent = await Events.findById(req.params.id);
         const theHost = await Users.findOne({'events._id': req.params.id});
-        const currentUser = await Users.findById(req.session.userId);       
+        const currentUser = await Users.findById(req.session.userId);
+        console.log('---------------');
+        console.log(shownEvent);
+        console.log('-----------------');
         res.render('events/show.ejs', {
             event: shownEvent,
             user: theHost,
