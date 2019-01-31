@@ -59,13 +59,14 @@
                         <h1 id="heading-text">Orderve</h1>
                         <h3>Find The Right Professional For Your Event</h3>
                         <h6>Sign Up and Become a Host or an Orderve</h6>
-                
+                    
+                        <br>
                     <div id="home-login-buttons">
                         <form action="/auth/loginPage" method="GET">
-                            <button type="submit">Log In</button>
+                            <button class="btn btn-round btn-lg" type="submit">Log In</button>
                         </form>
                         <form action="/auth/registerPage" method="GET">
-                            <button type="submit">Sign Up</button>
+                            <button class="btn btn-round btn-lg" type="submit">Sign Up</button>
                         </form> 
                     </div>
                 </div>
@@ -84,12 +85,15 @@
                     <% for (let i=0; i<events.length; i++) { %>
                         <li class="list-group-item text-left">
                             <img class="img-resize" src="<%=events[i].image%>">
-                            <a href="/events/<%=events[i]._id%>"> <%= events[i].title %> </a>
+                            <a href="/events/<%=events[i]._id%>"> <%= events[i].title %> </a> <br>
+                            <% events[i].servicesNeeded.forEach((service) => { %>
+                                <span> <%= service %> </span>
+                            <% }); %>
                         </li>
                     <% } %>
                     </ul>
                     <form action="/events" method="GET">
-                        <button type="submit">All Events</button>
+                        <button class="btn btn-round btn-lg" type="submit">All Events</button>
                     </form>
                 </div>
 
@@ -97,14 +101,33 @@
                     <h2>Orderves Near You</h2>
                     <ul>
                     <% for (let i=0; i<users.length; i++) { %>
-                        <li class="list-group-item text-left align-text-top">
-                            <img class="img-resize" src="<%=users[i].image%>">
-                            <a href="/users/<%=users[i]._id%>"> <%= users[i].username %> </a>
-                        </li>
+                        <!-- CHECK IF THEY HAVE A SERVICE TO OFFER -->
+                        <% if (users[i].services[0]) { %>
+                        <a href="/users/<%=users[i]._id%>">
+                            <li class="list-group-item text-left">
+                                <div class="user-card">
+                                   <div class="user-img">
+                                        <img class="img-resize" src="<%=users[i].image%>">
+                                    </div>
+                                    
+                                    <h4 class="user-heading">
+                                    <%= users[i].firstname %> 
+                                    <%= users[i].lastname %> 
+                                    </h4>
+
+                                    <% if (users[i].services[0]) { %>
+                                    <h5 class="red-text"> <%= users[i].services[0].title %> </h5>
+                                    <p> <%= users[i].services[0].about %> </p>
+                                    <% } %>
+                                
+                                </div>
+                            </li>
+                        </a>
+                        <% } %>
                     <% } %>
                     </ul>
                     <form action="/users" method="GET">
-                        <button type="submit">All Orderves</button>
+                        <button class="btn btn-round btn-lg" type="submit">All Orderves</button>
                     </form>
                 </div>
             </div>
