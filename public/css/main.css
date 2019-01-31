@@ -47,8 +47,13 @@ h2 {
 }
 
 .nav-link {
-    color:#FF3008;
+    color:white;
     font-size: 20px;
+}
+
+.nav-link:hover {
+    background-color: rgba(0,0,0,.1);
+    border-radius: 15px;
 }
 
 .btn-round {
@@ -83,4 +88,13 @@ a, a:hover {
 
 .red-text {
     color: #FF3008;
+}
+
+nav {
+    background-color: #FF3008;
+    color: white;
+}
+
+.active-link {
+    color:black;
 }
