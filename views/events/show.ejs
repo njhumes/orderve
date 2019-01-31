@@ -7,6 +7,7 @@
     <header>
         <% include ../partials/navbar %>
     </header>
+    <main>
     <h1><%=event.title%></h1>
     
         <img src="<%=event.image%>">
@@ -21,12 +22,12 @@
 
     <% if(currentSession.logged === true){%>
         <%if(currentUserId.toString() === user._id.toString()){%>
-            <a href='/events/<%=event._id%>/edit'>Edit</a>
+            <a href='/events/<%=event._id%>/edit'><button class='btn btn-round btn-lg'>Edit</button></a>
                 <%if(event.services.length > 0){%>
-            <a href='/events/<%=event._id%>/bids/'>Show Bids</a>
+            <a href='/events/<%=event._id%>/bids/'><button class='btn btn-round btn-lg'>Show Bids</button></a>
                 <%}%>   
         <% } else if (currentUser.services.length > 0) {%>
-            <a href='/bids/new/<%=event._id%>'><button id='bid-button'>Make Bid</button></a>
+            <a href='/bids/new/<%=event._id%>'><button class='btn btn-round btn-lg'>Make Bid</button></a>
         <% } %>
    <% }%>
 
@@ -34,6 +35,7 @@
 
     <!--Add edit feature based on if the event host is the current user logged in-->
     <!-- -->
+    </main>
     <% include ../partials/footer %>
 </body>
 </html>

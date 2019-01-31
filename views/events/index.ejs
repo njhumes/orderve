@@ -7,21 +7,25 @@
     <header>
         <% include ../partials/navbar %>
     </header>
-
+<main>
 <h1>Events List</h1>
     <% for(let i = 0; i < events.length; i++){%>
-       <li>
-           <img src="<%=events[i].image%>">
-           <a href='/events/<%=events[i]._id%>'><%=events[i].title%></a>
-           Services Needed: <%=events[i].servicesNeeded[0]%>
-        </li>
+        <a href='/events/<%=events[i]._id%>'>   
+            <li class='list-group-item events-list'>
+            <img class='img-resize' src="<%=events[i].image%>">
+            <h4><%=events[i].title%></h4>
+            Date: <%=events[i].date%><br>
+            Services Needed: <%=events[i].servicesNeeded[0]%>
+            </li>
+        </a>
         <!-- add the host and the services requested here -->
     <%}%>
     <br>
 
-    <a href='/events/new'><button>Create a New Event</button></a>
+    <a href='/events/new'><button class='btn btn-round btn-lg'>Create a New Event</button></a>
     
-<% include ../partials/footer %>
 
+</main>
+<% include ../partials/footer %>
 </body>
 </html>

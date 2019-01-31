@@ -9,7 +9,6 @@
         <% include ../partials/navbar %>
     </header>
     <main>
-        
         <section>
             <h1>Sign Up</h1>
             <form action="/auth/register" method="POST">
@@ -20,17 +19,9 @@
                 Email:    <input type="text" name="email" autocomplete="off"> <br>
                 Zip Code: <input type="text" name="zipCode" autocomplete="off"> <br>
                 Profile Picture: <input type='text' name='image' value='https://source.unsplash.com/collection/4065524/480x480' autocomplete='off'><br>
-                <button type="submit">Sign Up</button>
+                <button class='btn btn-round btn-lg' type="submit">Sign Up</button>
             </form>
         </section>
-
-        <br>
-
-        <section>
-            <p><a href='/events'>Events Near You</a></p>
-            <p><a href='/users'>Orderves Near You</a></p>
-        </section>
-
     </main>
     <% include ../partials/footer %>
 </body>
