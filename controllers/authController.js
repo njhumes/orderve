@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
   userDbEntry.firstname = req.body.firstname;
   userDbEntry.lastname = req.body.lastname;
   userDbEntry.zipCode = req.body.zipCode;
-
+  userDbEntry.image = req.body.image;
   try {
     const createdUser = await User.create(userDbEntry);
     const thisUser = await User.findOne({username: createdUser.username});
