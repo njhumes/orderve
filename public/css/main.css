@@ -98,3 +98,20 @@ nav {
 .active-link {
     color:black;
 }
+
+/* .list-image {
+
+}
+
+.showpage-image {
+
+} */
+#heading-text {
+    /* font-family: 'Quicksand', sans-serif;  */
+     font-family: 'Merienda', cursive;
+    /* font-family: 'Poiret One', cursive; */
+
+}
+body {
+    font-family: 'Quicksand', sans-serif;
+}
