@@ -15,11 +15,11 @@ router.get('/', async (req, res) => {
         const servicesNeeded = await Services.find(req.body.serviceId)
         // Or we don't need to necessarily and just display the basic event info on the index page
         res.render('events/index.ejs', {
-        events: allEvents,
-        user: host,
-        services: servicesNeeded,
-        currentUserId: req.session.userId,
-        currentSession: req.session
+            events: allEvents,
+            user: host,
+            services: servicesNeeded,
+            currentUserId: req.session.userId,
+            currentSession: req.session
         })
     } catch(err){
         res.send(err)
