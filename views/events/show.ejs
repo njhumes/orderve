@@ -38,10 +38,10 @@
         <%if(currentUserId.toString() === user._id.toString()){%>
             <a href='/events/<%=event._id%>/edit'>Edit</a>
                 <%if(event.services.length > 0){%>
-            <a href='/services/event/<%=event._id%>'>Show Bids</a>
+            <a href='/events/<%=event._id%>/bids/'>Show Bids</a>
                 <%}%>   
         <% }else if(currentUser.services.length > 0 && currentUser.services[0].title === event.servicesNeeded) {%>
-            <a href='/services/event/new/<%=event._id%>'><button id='bid-button'>Make Bid</button></a>
+            <a href='/bids/new/<%=event._id%>'><button id='bid-button'>Make Bid</button></a>
         <% } %>
    <% }%>
 
