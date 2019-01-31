@@ -5,13 +5,60 @@
 </head>
 <body>
     
+    <header>
+        <% include ../partials/navbar %>
+    </header>
+    <main>
         <header>
-            <% include ../partials/navbar %>
-        </header>
-        
-        <main>
+            <div class="container">
+                <div class="row justify-content-md-center my-5" id="profile-page">
+                    <div class="col-12" id="profile-content">
+                        <section>
+                            <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
+                                <h1>Your Profile</h1>
+                            <%} else{%>
+                                <h1><%=user.firstname%><%=user.lastname%></h1>
+                            <%}%>
             
-            <section>
+                            <img src="<%=user.image%>"> <br>
+                            First Name: <%=user.firstname%> <br>
+                            Last Name:  <%=user.lastname%> <br>
+                            Username:   <%=user.username%> <br>
+        
+                            Email:      <%=user.email%> <br>
+                            Events:     
+                                <%for(let i = 0; i < user.events.length; i++){%>
+                                    <a href='../events/<%=user.events[i]._id%>'><%=user.events[i].title%></a>
+                                    <br>
+        
+                                <%}%>
+                            <br>
+                            Services:   
+                            <% for (let i=0; i< user.services.length; i++){ %>
+                                <a href="../services/<%=user.services[i]._id%>">
+                                <%=user.services[i].title%>
+                                </a>
+                            <%}%><br>
+                            Zip Code:   <%=user.zipCode%> <br><br>
+                        </section>
+                
+                        <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
+                            <a href="/services/new"><button class="btn btn-round btn-lg" type="submit">Create new Service</button></a>
+                            <a href="/users/<%=currentUserId%>/edit"><button class="btn btn-round btn-lg" type="submit">Edit Your Profile</button></a>
+                            <a href='/events/new'><button class="btn btn-round btn-lg">Create a New Event</button></a>
+            
+                        <%} else{%>
+                            <a href="/"><button class="btn btn-round btn-lg" type="submit">Go Home</button></a>
+                        <%}%>
+                        
+                        <br>
+                        
+                    </div>
+                </div>
+            </div>
+        </header> 
+
+            <!-- <section>
                 <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
                     <h1>Your Profile</h1>
                 <%} else{%>
@@ -39,17 +86,17 @@
                     <%}%><br>
                     Zip Code:   <%=user.zipCode%> <br><br>
             </section>
+
             <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
-                <a href="/services/new"><button type="submit">Create new Service</button></a>
-                <a href="/users/<%=currentUserId%>/edit"><button type="submit">Edit Your Profile</button></a>
-                <a href='/events/new'><button>Create a New Event</button></a>
+                <a href="/services/new"><button class="btn btn-round btn-lg" type="submit">Create new Service</button></a>
+                <a href="/users/<%=currentUserId%>/edit"><button class="btn btn-round btn-lg" type="submit">Edit Your Profile</button></a>
+                <a href='/events/new'><button class="btn btn-round btn-lg">Create a New Event</button></a>
 
             <%} else{%>
-                <a href="/"><button type="submit">Go Home</button></a>
+                <a href="/"><button class="btn btn-round btn-lg" type="submit">Go Home</button></a>
             <%}%>
-            <br>
-    
-            
+
+            <br> -->
     
         </main>
 

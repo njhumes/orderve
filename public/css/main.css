@@ -118,4 +118,16 @@ body {
 }
 main {
     margin: 10px;
+    /* min-height: calc(100vh - 30px); */
+}
+footer {
+    height: 20px;
+}
+footer a {
+    display: inline;
+    margin-left: 20px;
+}
+.events-list {
+    list-style-type: none;
+    /* display: inline-block; */
 }
