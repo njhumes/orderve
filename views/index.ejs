@@ -60,7 +60,11 @@
                         <h3>Find The Right Professional For Your Event</h3>
                         <h6>Sign Up and Become a Host or an Orderve</h6>
                 
-                    <div id="home-login-buttons">
+                    <% if(currentSession.logged){%>
+                        <h3>Welcome <%=currentSession.username%>!</h3>
+
+                   <% } else{%>
+                        <div id="home-login-buttons">
                         <form action="/auth/loginPage" method="GET">
                             <button type="submit">Log In</button>
                         </form>
@@ -68,6 +72,8 @@
                             <button type="submit">Sign Up</button>
                         </form> 
                     </div>
+                    <%}%>
+                    
                 </div>
             </div>
         </div>
