@@ -10,9 +10,9 @@ const eventSchema = mongoose.Schema({
     description: {type: String, require: true},
     services: [Bids.schema], // TBD if we need this imported or if this will just be a drop down
     // hostId: String,
-    servicesNeeded: String,
+    servicesNeeded: [ {type: String} ],
     budget: Number,
-    // image: String
+    image: String
 })
 
 const Event = mongoose.model('Event', eventSchema)

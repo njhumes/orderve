@@ -24,6 +24,7 @@
     </header>
     <h1><%=event.title%></h1>
     
+        <img src="<%=event.image%>">
         <p>Location: <%=event.location%></p>
         <p>Date/Time: <%=event.date%></p>
         <p>Description: <%=event.description%></p>
@@ -39,7 +40,7 @@
                 <%if(event.services.length > 0){%>
             <a href='/events/<%=event._id%>/bids/'>Show Bids</a>
                 <%}%>   
-        <% }else if(currentUser.services.length > 0 && currentUser.services[0].title === event.servicesNeeded) {%>
+        <% } else if (currentUser.services.length > 0) {%>
             <a href='/bids/new/<%=event._id%>'><button id='bid-button'>Make Bid</button></a>
         <% } %>
    <% }%>

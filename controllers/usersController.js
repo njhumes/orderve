@@ -58,20 +58,24 @@ router.get('/:id', async (req,res)=>{
 
 //edit route
 router.get('/:id/edit', async (req, res)=>{
-    
+    // FETCH RANDOM IMAGE FROM UNSPLASH  
+
+
     try{
         const thisUser = await Users.findById({ _id: req.session.userId });
 
         res.render('users/edit.ejs', {
             user: thisUser,
             currentSession: req.session,
-            currentUserId: req.session.userId
+            currentUserId: req.session.userId,
+            // src: source
         });
     } catch(err){
         res.send(err);
     }
-    
 });
+
+
 
 // put route
 router.put('/:id', async (req, res)=>{

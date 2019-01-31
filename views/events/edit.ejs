@@ -53,6 +53,7 @@
         Description: <input type='text' name='description' value='<%=event.description%>'><br>
         Budget: <input type='number' name='budget' value='<%=event.budget%>'><br>
         Services Needed: <input type='checkbox' name='servicesNeeded' value='<%=event.servicesNeeded%>'><br>
+        Image: <input type='text' name='image' value='https://source.unsplash.com/collection/4065723/480x480'>
         <button type='submit'>Submit Changes</button>
     </form><br>
     <form action="/events/<%=event._id%>?_method=DELETE" method="POST">
