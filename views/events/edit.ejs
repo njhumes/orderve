@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+   <% include ../partials/head %>
 </head>
 <body>
     <header>
-            <nav>
-                <a href='/'>Home</a>
-                <a href='/about'>About</a>
-                <a href='/events'>Events</a>
-                <a href='/services'>Orderves</a>
-                <% if (currentSession.logged){%>
-                    <a href='/users/<%=currentUserId%>'>Profile</a>
-                    <a href='/auth/logout'>Logout</a>
-                <%} else {%>
-                    <a href='/auth/loginPage'>Login</a>
-                <%}%>
-            </nav>
+          <% include ../partials/navbar %>
     </header>
 <h1> Edit <%=event.title%></h1>
 
@@ -60,5 +45,7 @@
             <input type="submit" value="Delete Event"/>
         </form>
 <!--Add delete feature based on if the event host is the current user logged in-->
+
+<% include ../partials/footer %>
 </body>
 </html>
