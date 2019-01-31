@@ -80,7 +80,7 @@ a, a:hover {
 }
 
 
-.user-img {
+.user-img, .profile-img {
     padding: 0px;
     float: left;
     margin-right:10px;
@@ -112,6 +112,21 @@ nav {
     /* font-family: 'Poiret One', cursive; */
 
 }
+
 body {
     font-family: 'Quicksand', sans-serif;
+}
+
+.lg-text {
+    font-size: 70px;
+}
+
+.profile-img img{
+    margin-right:50px;
+    width: 300px;
+    height: 300px;
+}
+
+.profile-card {
+    font-size: 20px;
 }

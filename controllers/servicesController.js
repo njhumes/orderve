@@ -17,7 +17,7 @@ router.get('/', async (req,res)=>{
             currentUserId: req.session.userId,
             currentSession: req.session
         })
-    }catch(err){
+    } catch(err){
         res.send(err);
     }
 })
