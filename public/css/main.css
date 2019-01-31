@@ -99,13 +99,14 @@ nav {
     color:black;
 }
 
-/* .list-image {
+.list-image {
 
 }
 
 .showpage-image {
-
-} */
+    height: 300px;
+    width: 300px;
+}
 #heading-text {
     /* font-family: 'Quicksand', sans-serif;  */
      font-family: 'Merienda', cursive;
