@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Register</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+    <% include ../partials/head %>
 </head>
 <body>
 
     <header>
-            <nav>
-                <a href='/'>Home</a>
-                <a href='/about'>About</a>
-                <a href='/events'>Events</a>
-                <a href='/services'>Orderves</a>
-                
-                
-            </nav>
+        <% include ../partials/navbar %>
     </header>
     <main>
         
@@ -30,6 +19,7 @@
                 Password: <input type="password" name="password" autocomplete="off"> <br>
                 Email:    <input type="text" name="email" autocomplete="off"> <br>
                 Zip Code: <input type="text" name="zipCode" autocomplete="off"> <br>
+                Profile Picture: <input type='text' name='image' autocomplete='off'><br>
                 <button type="submit">Sign Up</button>
             </form>
         </section>
@@ -42,6 +32,6 @@
         </section>
 
     </main>
-
+    <% include ../partials/footer %>
 </body>
 </html>
