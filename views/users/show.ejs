@@ -27,7 +27,12 @@
         <main>
             
             <section>
-                <h1>Show User</h1>
+                <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
+                    <h1>Your Profile</h1>
+                <%} else{%>
+                    <h1><%=user.firstname%><%=user.lastname%></h1>
+                <%}%>
+
                     First Name: <%=user.firstname%> <br>
                     Last Name:  <%=user.lastname%> <br>
                     Username:   <%=user.username%> <br>
@@ -45,7 +50,7 @@
                         <%=user.services[i].title%>
                         </a>
                     <%}%><br>
-                    Zip Code:   <%=user.zipCode%> <br>
+                    Zip Code:   <%=user.zipCode%> <br><br>
             </section>
             <% if (currentSession.logged === true && user._id.toString() === currentUserId.toString()){%>
                 <a href="/services/new"><button type="submit">Create new Service</button></a>

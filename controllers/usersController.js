@@ -89,7 +89,10 @@ router.put('/:id', async (req, res)=>{
 
 // delete route
 router.delete('/:id', async (req,res) => {
-    
+    // CLEAR THE SESSION!
+    req.session.userId = "";
+    req.session.logged = false;
+
     try{
         const deletedUser = await Users.findByIdAndRemove(req.params.id);
         let eventIds = [];
