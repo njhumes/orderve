@@ -31,7 +31,6 @@ router.get('/', async (req, res) => {
 router.get('/new', async (req, res) => {
     if(req.session.logged){
         try {
-            console.log(req.session);
             const user = await Users.findById(req.session.userId);
             const servicesNeeded = await Services.find({})
             res.render('events/new.ejs', {
@@ -72,8 +71,6 @@ router.get('/:id', async (req, res) => {
 
 // Edit Route
 router.get('/:id/edit', async (req, res) => {
-    console.log(`are we getting here`);
-    console.log(req.session);
     try {
         const editEvent = await Events.findById(req.params.id);
         const theHost = await Users.findOne({'events._id': req.params.id});
