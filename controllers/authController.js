@@ -86,7 +86,8 @@ router.get('/logout', (req, res) => {
 // New Login Page
 router.get('/loginPage', (req, res) => {
     res.render('auth/login.ejs', {
-      message: req.session.message
+      message: req.session.message,
+      currentSession: req.session
     });
 });
 
