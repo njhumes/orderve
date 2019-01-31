@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+</head>
+<body>
+    <header>
+            <nav>
+                <a href='/'>Home</a>
+                <a href='/about'>About</a>
+                <a href='/events'>Events</a>
+                <a href='/services'>Orderves</a>
+                <% if (currentSession.logged){%>
+                    <a href='/users/<%=currentUserId%>'>Profile</a>
+                    <a href='/auth/logout'>Logout</a>
+                <%} else {%>
+                    <a href='/auth/loginPage'>Login</a>
+                <%}%>
+                
+            </nav>
+    </header>
+    <main>
+        <h1>Edit Bid for: <%=bid.title%> at <%=event.title%></h1>
+        <form action="/bids/<%=bid._id%>?_method=PUT" method="POST">
+        Service Type:   <select name="title">
+                            <option value=''>None</option>
+                            <option value="Chef">Chef</option>
+                            <option value="Bartender">Bartender</option>
+                        </select><br/>
+        Bid Amount: <input type="number" name="bidAmount" value="<%=bid.bidAmount%>">
+        Message: <input type="text" name="note" value="<%=bid.note%>">
+        <button type="submit">Submit Bid</button>
+        </form>
+    </main>
+</body>
+</html>

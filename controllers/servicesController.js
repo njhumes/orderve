@@ -3,6 +3,7 @@ const router        = express.Router();
 const Users         = require('../models/User');
 const Events        = require('../models/Event');
 const Services      = require('../models/Service');
+const Bids          = require('../models/Bid');
 
 // index route
 router.get('/', async (req,res)=>{
@@ -147,6 +148,25 @@ router.delete('/:id', async (req, res)=>{
         const foundEvent = await Events.findOne({'services._id': req.params.id});
         foundUser.services.id(req.params.id).remove();
         await foundUser.save();
+        console.log('deleted >>>>>>>>>>>>>>>>>');
+        // delete the bids attached to this service.
+        const bidsIds = [];
+        
+        for (let i = 0; i < deletedService.bids.length; i++){
+            bidsIds.push(deletedService.bids[i]._id.toString());
+        }
+        console.log(`bids id array: ${bidsIds} with length of ${bidsIds.length}`);
+        if (bidsIds.length > 1){
+            console.log('in the length > 1');
+            await Bids.deleteMany({_id:{$in: bidsIds}});
+            console.log('deleted many');
+        } else if (bidsIds.length !== 0) {
+            console.log('in the else');
+            await Bids.findById(bidsIds[0]);
+            console.log('deleted one');
+        }
+        
+        console.log('deleted from Collections >>>>>>>>>>>>>>>>>');
         if(foundEvent){
             console.log('deleted from the event' + deletedService);
             foundEvent.services.id(req.params.id).remove();
@@ -158,6 +178,7 @@ router.delete('/:id', async (req, res)=>{
         
         // redirects to the current users show page
     }catch(err){
+        console.log(err);
         res.send(err);
     }
 });
