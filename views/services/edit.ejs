@@ -13,7 +13,7 @@
         Job Title: <input type="text" name="title" value="<%=service.title%>"><br/>
         Description: <input type="text" name="about" value="<%=service.about%>"><br/>
         Maybe loop through all the images to edit serparatly? so they can delete images from here<br/>
-        Add Images (URL): <input type="text" name="images" value="">
+        Add Images (URL): <input type="text" name="images" value="<%=service.images[0]%>">
         <% for (let i = 0; i < service.images.length; i++) {%>
             <img src="<%=service.images[i]%>"><br/>
         <%}%>
