@@ -59,6 +59,7 @@ h2 {
 .btn-round {
     background-color:#FF3008;
     color: white;
+    margin-top: 5px;
 }
 
 .btn-lg {
@@ -114,4 +115,7 @@ nav {
 }
 body {
     font-family: 'Quicksand', sans-serif;
+}
+main {
+    margin: 10px;
 }

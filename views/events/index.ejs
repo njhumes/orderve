@@ -7,7 +7,7 @@
     <header>
         <% include ../partials/navbar %>
     </header>
-
+<main>
 <h1>Events List</h1>
     <% for(let i = 0; i < events.length; i++){%>
        <li>
@@ -19,9 +19,9 @@
     <%}%>
     <br>
 
-    <a href='/events/new'><button>Create a New Event</button></a>
+    <a href='/events/new'><button class='btn btn-round'>Create a New Event</button></a>
     
 <% include ../partials/footer %>
-
+</main>
 </body>
 </html>
