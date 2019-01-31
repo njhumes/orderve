@@ -25,7 +25,11 @@
 
 <h1>Events List</h1>
     <% for(let i = 0; i < events.length; i++){%>
-       <li><a href='/events/<%=events[i]._id%>'><%=events[i].title%></a></li>
+       <li>
+           <img src="<%=events[i].image%>">
+           <a href='/events/<%=events[i]._id%>'><%=events[i].title%></a>
+           Services Needed: <%=events[i].servicesNeeded[0]%>
+        </li>
         <!-- add the host and the services requested here -->
     <%}%>
     <br>

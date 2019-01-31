@@ -50,3 +50,37 @@ h2 {
     color:#FF3008;
     font-size: 20px;
 }
+
+.btn-round {
+    background-color:#FF3008;
+    color: white;
+}
+
+.btn-lg {
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.user-card {
+    height: 100px;
+}
+
+.list-group-item:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+a, a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+.user-img {
+    padding: 0px;
+    float: left;
+    margin-right:10px;
+}
+
+.red-text {
+    color: #FF3008;
+}
