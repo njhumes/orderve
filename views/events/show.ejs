@@ -8,15 +8,15 @@
         <% include ../partials/navbar %>
     </header>
     <main>
-    <h1><%=event.title%></h1>
+    <h1 class='event-show'><%=event.title%></h1>
     
-        <img class='showpage-image' src="<%=event.image%>">
-        <p>Location: <%=event.location%></p>
-        <p>Date & Time: <%=event.date%></p>
-        <p>Description: <%=event.description%></p>
-        <p>Host: <%=user.username%></p>
-        <p>Services Needed: <%=event.servicesNeeded%></p>
-        <p>Budget: $<%=event.budget%><p>
+        <img class='showpage-image event-show' src="<%=event.image%>"><br>
+        <p class='event-show'>Location: <%=event.location%></p>
+        <p class='event-show'>Date & Time: <%=event.date%></p>
+        <p class='event-show'>Description: <%=event.description%></p>
+        <p class='event-show'>Host: <%=user.username%></p>
+        <p class='event-show'>Services Needed: <%=event.servicesNeeded%></p>
+        <p class='event-show'>Budget: $<%=event.budget%><p>
         
     </ul>
 
