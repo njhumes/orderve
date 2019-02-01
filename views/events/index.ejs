@@ -8,14 +8,15 @@
         <% include ../partials/navbar %>
     </header>
 <main>
-<h1>Events List</h1>
+<h1 class='event-title'>Events Near You</h1>
     <% for(let i = 0; i < events.length; i++){%>
         <a href='/events/<%=events[i]._id%>'>   
             <li class='list-group-item events-list'>
             <img class='img-resize' src="<%=events[i].image%>">
             <h4><%=events[i].title%></h4>
             Date: <%=events[i].date%><br>
-            Services Needed: <%=events[i].servicesNeeded[0]%>
+            Location: <%=events[i].location%><br>
+            Services Needed: <%=events[i].servicesNeeded%>
             </li>
         </a>
         <!-- add the host and the services requested here -->
