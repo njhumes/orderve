@@ -4,24 +4,41 @@
     <% include ../partials/head %>
 </head>
 <body>
-    <header>
-        <% include ../partials/navbar %>
-    </header>
-    <main>
-            <h1>Title: <%=bid.title%></h1>
-            <a href="/services/<%=service._id%>"><h2><%=bid.title%> Profile</h2></a>
-            <p>Bid Amount<%=bid.bidAmount%></p>
-            
-            <% if (currentSession.logged === true && (user._id.toString() === currentUserId.toString())){%>
-                <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
-                <a href="/bids/<%=bid._id%>/edit"><button type="submit">Edit</button></a>
-                <form action="/bids/<%=bid._id%>?_method=DELETE" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
-            <%} else{%>
-                <a href="/"><button type="submit">Go Home</button></a>
+<header>
+     <% include ../partials/navbar %>
+</header>
+<main>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <img class="showpage-image" src="<%=service.images%>">
+                </div>
+                <h1 class="display-4"><%=user.firstname%> <%=user.lastname%></h1>
+                <hr class="my-3">
+                <h1><%=service.title%></h1>
                 
-            <%}%>
+                
+            </div> 
+            <div class="col-5">
+                <h2><%=bid.title%></h2>
+                
+                <h3 class="display-8">Bid Amount $$</h1>
+                <hr class="my-5">
+                <h1>$<%=bid.bidAmount%><h1>
+                <hr class="my-5">
+            </div>
+            <div class="col-3">
+                <% if (currentSession.logged === true && (user._id.toString() === currentUserId.toString())) { %>
+                <a href="/users/<%=currentUserId%>"><button class="btn btn-round btn-sm" type="submit">Go back to profile</button></a>
+                <a href="/bids/<%=bid._id%>/edit"><button class="btn btn-round btn-sm" type="submit">Edit</button></a>
+                <form action="/bids/<%=bid._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-round btn-sm" type="submit">Delete</button>
+                </form>    
+                <%}%>
+            </div>
+        </div>
+    </div>
 
     </main>
     <% include ../partials/footer %>

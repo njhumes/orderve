@@ -3,7 +3,7 @@ const Bids = require('./Bid');
 
 const serviceSchema = mongoose.Schema({
     title: {type: String, required: true},
-    images: [{type: String}],
+    images: String,
     about: String,
     bids: [Bids.schema]
 });
