@@ -8,17 +8,47 @@
         <% include ../partials/navbar %>
     </header>
     <main>
-        <h1>Edit Bid for: <%=bid.title%> at <%=event.title%></h1>
-        <form action="/bids/<%=bid._id%>?_method=PUT" method="POST">
-        Service Type:   <select name="title">
-                            <option value=''>None</option>
-                            <option value="Chef">Chef</option>
-                            <option value="Bartender">Bartender</option>
-                        </select><br/>
-        Bid Amount: <input type="number" name="bidAmount" value="<%=bid.bidAmount%>">
-        Message: <input type="text" name="note" value="<%=bid.note%>">
-        <button type="submit">Submit Bid</button>
-        </form>
+        
+        
+
+        <div class="jumbotron">
+        <div class="row">
+            <div class="col-3">
+            <h1>Edit Bid For:</h1>
+            </div>
+            <div class="col-6">
+                <form action="/bids/<%=bid._id%>?_method=PUT" method="POST">
+                <h1><%=event.title%></h1>
+                        <div class="form-group row">
+                            Service Type: <select name="title">
+                                <% event.servicesNeeded.forEach((service)=>{ %>
+                                    <option value="<%=service%>"><%=service%></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Bid Amount: </label>
+                            <input class="form-control" type="number" name="bidAmount" value="<%=bid.bidAmount%>">
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Message: </label>
+                            <input class="form-control" type="text" name="note" value="<%=bid.note%>">
+                        </div><br/>
+                        <div class="form-group row">
+                            <button class="btn btn-round btn-lg" type="submit">Update Bid</button><br/>
+                        </div>
+                </form> 
+            </div>
+            <div class="col-3">
+                <form action="/bids/<%=bid._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-round btn-lg" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
     </main>
     <% include ../partials/footer %>
 </body>

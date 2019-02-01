@@ -8,28 +8,41 @@
         <% include ../partials/navbar %>
     </header>
     <main>
+
         <% if (isEvent){%>
-            <h1><%=event.title%> - chef bids</h1>
-            <ul>
-                <% for (let i = 0; i < event.services.length; i++) { %>
-                    <a href="/bids/<%=event.services[i]._id%>"><li><%=event.services[i].title%>
-                    </li></a>
-                <%}%>
-            </ul>  
-            <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
-        <%} else {%>
-            <h1>Current Chefs Looking for Events</h1>
-            <ul>
-                <% for (let i = 0; i < services.length; i++) { %>
-    
-                <a href="/services/<%=services[i]._id%>"><li><%=services[i].title%>
-                
+        <h1><%=event.title%> - chef bids</h1>
+        <ul>
+            <% for (let i = 0; i < event.services.length; i++) { %>
+                <a href="/bids/<%=event.services[i]._id%>">
+                <li class="list-group-item events-list">
+                    <%=event.services[i].title%>
+                    <img class='img-resize' src="<%=event.services[i].images%>">
                 </li></a>
-                <%}%>
-            </ul>  
-            <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
-        
-        <%}%>
+            <%}%>
+        </ul>  
+        <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
+    <%} else {%>
+        <h1>Available Orderves</h1>
+        <ul>
+            <% for (let i = 0; i < services.length; i++) { %>
+            <a href="/services/<%=services[i]._id%>">
+            <li class="list-group-item events-list">
+                <div class="row">
+                    <div class="col-3">
+                        <img class='list-image img-thumbnail img-fluid' src="<%=services[i].images%>">
+                    </div>
+                    <div class="col-5">
+                        <h3><%=services[i].title%></h3>
+                        <hr class="my-3">
+                        <p><%=services[i].about%></p>
+                    </div>
+                </div>
+            </li></a>
+            <%}%>
+        </ul>  
+        <a href="/users/<%=currentUserId%>"><button class="btn btn-round btn-lg" type="submit">Go back to profile</button></a>
+    
+    <%}%>
 
         
     </main>

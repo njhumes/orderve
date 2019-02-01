@@ -100,6 +100,11 @@ nav {
     color:black;
 }
 
+
+.list-image {
+    height: 150px;
+    width: 150px;
+}
 .showpage-image {
     height: 300px;
     width: 300px;
