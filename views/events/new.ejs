@@ -10,13 +10,13 @@
     <main>
     <form action='/events' method='POST'>
         <p>Title:</p>
-        <input type='text' name='title'>
+        <input type='text' name='title' autocomplete='off'>
         <p>Location:</p>
-        <input type='text' name='location'>
+        <input type='text' name='location' autocomplete='off'>
         <p>Date & Time:</p>
-        <input type='datetime-local' name='date'>
+        <input type='datetime-local' name='date' autocomplete='off'>
         <p>Description:</p>
-        <input type='text' name='description'>
+        <input type='text' name='description' autocomplete='off'>
         
         <!-- Test These two below -->
         <p>Services Requested:</p>
@@ -32,7 +32,7 @@
          <input type='text' name='username' value='<%=user.username%>' readonly>
 
         <p>Budget:</p>
-        <input type='number' name='budget'><br><br>
+        $<input type='number' name='budget'><br><br>
 
         Image: <input type='text' name='image' value='https://source.unsplash.com/collection/4065723/480x480'>
         <button type='submit'>Create New Event</button>
