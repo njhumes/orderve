@@ -10,13 +10,13 @@
     <main>
     <h1><%=event.title%></h1>
     
-        <img src="<%=event.image%>">
+        <img class='showpage-image' src="<%=event.image%>">
         <p>Location: <%=event.location%></p>
-        <p>Date/Time: <%=event.date%></p>
+        <p>Date & Time: <%=event.date%></p>
         <p>Description: <%=event.description%></p>
         <p>Host: <%=user.username%></p>
         <p>Services Needed: <%=event.servicesNeeded%></p>
-        <p>Budget: <%=event.budget%><p>
+        <p>Budget: $<%=event.budget%><p>
         
     </ul>
 
