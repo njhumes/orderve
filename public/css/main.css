@@ -59,6 +59,7 @@ h2 {
 .btn-round {
     background-color:#FF3008;
     color: white;
+    margin-top: 5px;
 }
 
 .btn-lg {
@@ -99,13 +100,15 @@ nav {
     color:black;
 }
 
-/* .list-image {
 
+.list-image {
+    height: 150px;
+    width: 150px;
 }
-
 .showpage-image {
-
-} */
+    height: 300px;
+    width: 300px;
+}
 #heading-text {
     /* font-family: 'Quicksand', sans-serif;  */
      font-family: 'Merienda', cursive;
@@ -131,3 +134,51 @@ body {
     font-size: 20px;
 }
 
+main {
+    margin: 10px;
+    /* min-height: calc(100vh - 30px); */
+}
+footer {
+    height: 20px;
+}
+footer a {
+    display: inline;
+    margin-left: 20px;
+}
+.events-list {
+    list-style-type: none;
+    /* display: inline-block; */
+}
+.event-title {
+    margin-left: 50px;
+
+}
+.edit-event {
+    width: 36%;
+    margin-left: 30%;
+}
+.edit-event input {
+    /* display: inline-block; */
+    float: right;
+    width: 300px;
+}
+#edit-btn {
+    margin-bottom: 10px;
+}
+.auth-title {
+    margin-left: 43%;
+}
+.edit-title {
+    margin-left: 38%;
+}
+.edit-event option {
+    /* display: inline-block; */
+    /* float: right; */
+    width: 100px;
+}
+#event-delete {
+    margin-left: 30%;
+}
+#reg-btn {
+    margin-left: 45%;
+}

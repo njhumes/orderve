@@ -7,36 +7,53 @@
     <header>
         <% include ../partials/navbar %>
     </header>
-    <main>
-            <h1>Title: <%=service.title%></h1>
-            <p>Description<%=service.about%></p>
-            <div>Images:
-                <% for( let i = 0; i < service.images.length; i++){ %>
-                    <img src="<%=service.images[i]%>">
-                <%}%>
-                
+<main>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <img class="showpage-image" src="<%=service.images%>">
+                </div>
+                <h1 class="display-4"><%=serviceUser.firstname%> <%=serviceUser.lastname%></h1>
+                <hr class="my-4">
+                <h2><%=service.title%></h2>
+            </div> 
+            <div class="col-5">
+                <h1 class="display-8">Description</h1>
+                <hr class="my-5">
+                <%=service.about%>
+                <hr class="my-5">
             </div>
-            <% if (currentSession.logged === true && (serviceUser._id.toString() === currentUserId.toString())){%>
-                My Bids:<br/>
+            <div class="col-3">
+                <% if (currentSession.logged === true && (serviceUser._id.toString() === currentUserId.toString())){%>
+                <h2>My Bids:</h2><br/>
                 <ul>
                     <% for (let i = 0; i < service.bids.length; i++){%>
-                        <a href="/bids/<%=service.bids[i]._id%>"><li><%=service.bids[i].title%></li></a>
-                        <a href="/bids/<%=service.bids[i]._id%>/edit"><button type="submit">Edit Bid</button></a>
-                        <form action="/bids/<%=service.bids[i]._id%>?_method=DELETE" method="POST">
-                            <button type="submit">Delete Bid</button>
-                        </form>
+                        <li><a href="/bids/<%=service.bids[i]._id%>"><h4><%=service.bids[i].title%></h4></a>
+                            <a href="/bids/<%=service.bids[i]._id%>/edit"><button class="btn btn-round btn-sm" type="submit">Edit Bid</button></a>
+                            <br/>
+                        </li>
+                        
                     <%}%>
                 </ul>
-                
-                <a href="/users/<%=currentUserId%>"><button type="submit">Go back to profile</button></a>
-                <a href="/services/<%=service._id%>/edit"><button type="submit">Edit Service</button></a>
+            </div>
+        </div>
+        <hr class="my-12">
+        <div class="row">
+                <a href="/users/<%=currentUserId%>"><button class="btn btn-round btn-lg" type="submit">Go back to profile</button></a>
+                <a href="/services/<%=service._id%>/edit"><button class="btn btn-round btn-lg" type="submit">Edit Service</button></a>
                 <form action="/services/<%=service._id%>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Service</button>
+                    <button class="btn btn-round btn-lg" type="submit">Delete Service</button>
                 </form>
             <%} else{%>
-                <a href="/"><button type="submit">Go Home</button></a>
-                
+                <a href="/"><button class="btn btn-round btn-lg" type="submit">Go Home</button></a>
             <%}%>
+
+        </div>
+    </div>
+        
+            
+                
 
     </main>
     <% include ../partials/footer %>

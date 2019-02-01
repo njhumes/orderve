@@ -7,7 +7,8 @@
     <header>
           <% include ../partials/navbar %>
     </header>
-<h1> Edit <%=event.title%></h1>
+<main>
+<h1 class='edit-title'> Edit <%=event.title%></h1><br>
 
 
         <%let year = event.date.getFullYear()%>
@@ -29,23 +30,38 @@
             <%minute = '0' + minute%>
         <%}%>
        <%let correctDate = year + '-' + theMonth + '-' + day + 'T' + hours + ':' + minute%>
+       <%let budgetPrice ='$' + event.budget %>
     
-<form action='/events/<%=event._id%>?_method=PUT' method='POST'>
-        Title: <input type='text' name='title' value='<%=event.title%>'><br>
-        Host: <input type='text' name='host' value='<%=user.username%>' readonly><br>
-        Location: <input type='text' name='location' value='<%=event.location%>'><br>
-        Date & Time: <input type='datetime-local' name='date' value='<%=correctDate%>'><br>
-        Description: <input type='text' name='description' value='<%=event.description%>'><br>
-        Budget: <input type='number' name='budget' value='<%=event.budget%>'><br>
-        Services Needed: <input type='checkbox' name='servicesNeeded' value='<%=event.servicesNeeded%>'><br>
-        Image: <input type='text' name='image' value='https://source.unsplash.com/collection/4065723/480x480'>
-        <button type='submit'>Submit Changes</button>
-    </form><br>
-    <form action="/events/<%=event._id%>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete Event"/>
+<form class='edit-event' action='/events/<%=event._id%>?_method=PUT' method='POST'>
+        Title: <input type='text' name='title' value='<%=event.title%>'><br><br>
+
+        Host: <input type='text' name='host' value='<%=user.username%>' readonly><br><br>
+
+        Location: <input type='text' name='location' value='<%=event.location%>'><br><br>
+
+        Date & Time: <input type='datetime-local' name='date' value='<%=correctDate%>'><br><br>
+
+        Description: <input type='text' name='description' value='<%=event.description%>'><br><br>
+
+        Budget: <input type='number' name='budget' value='<%=event.budget%>'><br><br>
+
+        Services Needed: 
+        <select multiple name="servicesNeeded">
+            <option value="Chef">Chef</option>
+            <option value="Bartender">Bartender</option>
+        </select><br><br>
+
+        Image: <input type='text' name='image' value='<%=event.image%>'><br><br><br>
+
+        <button id='edit-btn' class='btn btn-round btn-lg' type='submit'>Submit Changes</button>
+    </form>
+
+    <form id='event-delete' action="/events/<%=event._id%>?_method=DELETE" method="POST">
+            <input type="submit" class='btn btn-round btn-lg' value="Delete Event"/>
         </form>
 <!--Add delete feature based on if the event host is the current user logged in-->
 
 <% include ../partials/footer %>
+</main>
 </body>
 </html>

@@ -8,16 +8,33 @@
         <% include ../partials/navbar %>
     </header>
     <main>
-    <form action="/services/<%=service._id%>?_method=PUT" method="POST">
-        Here will be a dropdown showing each type of skill they can choose
-        Job Title: <input type="text" name="title" value="<%=service.title%>"><br/>
-        Description: <input type="text" name="about" value="<%=service.about%>"><br/>
-        Maybe loop through all the images to edit serparatly? so they can delete images from here<br/>
-        Add Images (URL): <input type="text" name="images" value="">
-        <% for (let i = 0; i < service.images.length; i++) {%>
-            <img src="<%=service.images[i]%>"><br/>
-        <%}%>
         
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form action="/services/<%=service._id%>?_method=PUT" method="POST">
+                        <h1>Create New Orderve</h1>
+                            <div class="form-group row">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Job Title: </label>
+                                <input class="form-control" type="text" name="title" value="<%=service.title%>">
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Description: </label>
+                                <input class="form-control" type="text" name="about" value="<%=service.about%>">
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Image (URL): </label>
+                                <input class="form-control" type="text" name="images" value="<%=service.images%>">
+                            </div><br/>
+                            <div class="form-group row">
+                            <button class="btn btn-round btn-lg" type="submit">Update Orderve</button><br/>
+                            </div>
+                    </form> 
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
         
         
         <button type="submit">Edit skillset/chef/orderve</button>

@@ -10,18 +10,15 @@
     </header>
     <main>
         <h1>Login</h1>
-        <form action="/auth/login" method="POST">
+        <form class='form-signin' action="/auth/login" method="POST">
             <%= message %> <br>
             Username: <input type="text" name="username" autocomplete="off"> <br>
-            Password: <input type="password" name="password" autocomplete="off"> <br>
-            <button type="submit">Log In</button>
+            Password: <input type="password" name="password" autocomplete="off"> <br><br>
+            <button class='btn btn-round btn-lg' type="submit">Log In</button>
         </form>
-        <p><a href='/auth/registerPage'><button>Register</button></a></p>
-        <br>
-        <p><a href='/events'>Events Near You</a></p>
-        <p><a href='/users'>Orderves Near You</a></p>
+        <p><a href='/auth/registerPage'><button class='btn btn-round btn-lg'>Register</button></a></p>
+  
     </main>
-
     <% include ../partials/footer %>
 </body>
 </html>
