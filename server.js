@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('./db/db');
 const express               = require('express');
 const app                   = express();
@@ -13,7 +14,7 @@ const Events                = require('./models/Event');
 // const Services              = require('./models/Service');
 
 const store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+    uri: process.env.MONGODB_URI,
     collection: 'mySessions'
 });
 
@@ -83,6 +84,6 @@ app.get('/about', async (req, res) => {
 });
 
 
-app.listen(port, ()=>{
-    console.log(`server listening on port: ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log('listening on port 3000');
 })
