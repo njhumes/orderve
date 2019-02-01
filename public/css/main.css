@@ -100,10 +100,6 @@ nav {
     color:black;
 }
 
-.list-image {
-
-}
-
 .showpage-image {
     height: 300px;
     width: 300px;
@@ -131,4 +127,37 @@ footer a {
 .events-list {
     list-style-type: none;
     /* display: inline-block; */
+}
+.event-title {
+    margin-left: 50px;
+
+}
+.edit-event {
+    width: 36%;
+    margin-left: 30%;
+}
+.edit-event input {
+    /* display: inline-block; */
+    float: right;
+    width: 300px;
+}
+#edit-btn {
+    margin-bottom: 10px;
+}
+.auth-title {
+    margin-left: 43%;
+}
+.edit-title {
+    margin-left: 38%;
+}
+.edit-event option {
+    /* display: inline-block; */
+    /* float: right; */
+    width: 100px;
+}
+#event-delete {
+    margin-left: 30%;
+}
+#reg-btn {
+    margin-left: 45%;
 }
